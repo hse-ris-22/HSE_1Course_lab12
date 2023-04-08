@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using ClassLibraryHSE1course;
 
 namespace lab
@@ -8,7 +9,6 @@ namespace lab
     {
         public static void PrintLine(string str = "")
         {
-            // Если убрать комментарий снизу, то изменяться вывод с переносом строки во всей программе
             //Random rnd = new Random();
             //ConsoleColor[] consoleColors = (ConsoleColor[]) ConsoleColor.GetValues(typeof(ConsoleColor));
             //Console.ForegroundColor = consoleColors[rnd.Next(0,consoleColors.Length)];
@@ -18,7 +18,6 @@ namespace lab
         }
         public static void Print(string str = "")
         {
-            // Если убрать комментарий снизу, то изменяться вывод без переноса строки во всей программе
             //Random rnd = new Random();
             //ConsoleColor[] consoleColors = (ConsoleColor[])ConsoleColor.GetValues(typeof(ConsoleColor));
             //Console.ForegroundColor = consoleColors[rnd.Next(0, consoleColors.Length)];
@@ -30,8 +29,34 @@ namespace lab
             Output.AddPrinterLine(PrintLine);
             Output.AddPrinter(Print);
 
-            DoublyLinkedList list = new DoublyLinkedList(1,10,5);
+            // random linked list with from start showing
+            DoublyLinkedList list = new DoublyLinkedList(10,1,5);
+            list.Show(isFromStart: true);
+            Input.Cont();
+            Console.Clear();
+            // random linked list with from end showing
+            list.Show(isFromStart: false);
+            Input.Cont();
+            Console.Clear();
+
+            // adding to empty linked list
+            list = new DoublyLinkedList();
             list.Show(isFromStart:true);
+            list.AddRandomByNumber(123,1,1);
+            list.Show(isFromStart: true);
+            list.AddRandomByNumber(0, 2, 2);
+            list.Show(isFromStart: true);
+            list.AddRandomByNumber(123, 3, 3);
+            list.Show(isFromStart: true);
+            list.AddRandomByNumber(2, 4, 4);
+            list.Show(isFromStart: true);
+            list.AddRandomByNumber(1, 5, 5);
+            list.Show(isFromStart: true);
+            list.AddRandomByNumber(4, 6, 10);
+            list.Show(isFromStart: true);
+
+
+
         }
     }
 }
