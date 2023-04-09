@@ -1,15 +1,27 @@
 ﻿
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using lab;
+using static lab.Output;
 
 namespace ClassLibraryHSE1course
 {
-    public class DoublyLinkedList
+    public class DoublyLinkedList<T>
     {
         static Random rnd = new Random();
-        private DoublyLinkedNode<Vehicle> ?firstNode;
-        private DoublyLinkedNode<Vehicle>? lastNode;
+        private DoublyLinkedNode<T>? firstNode;
+        private DoublyLinkedNode<T>? lastNode;
         public int Length { get; private set; }
+        public delegate T RandomT(int min, int max);
+        public static RandomT randomT;
+        public void AssignRandomT(RandomT rnd)
+        {
+            randomT = rnd;
+        }
+        public void ClearRandomT(RandomT rnd)
+        {
+            randomT = null;
+        }
 
         public DoublyLinkedList()
         {
@@ -28,18 +40,18 @@ namespace ClassLibraryHSE1course
             }
             if (size == 1)
             {
-                firstNode = new DoublyLinkedNode<Vehicle>();
+                firstNode = new DoublyLinkedNode<T>();
                 lastNode = firstNode;
                 Length = size;
                 return;
             }
             // size > 1
-            firstNode = new DoublyLinkedNode<Vehicle>();
-            DoublyLinkedNode<Vehicle>? pastNode = firstNode;
-            DoublyLinkedNode<Vehicle>? nextNode = null;
+            firstNode = new DoublyLinkedNode<T>();
+            DoublyLinkedNode<T>? pastNode = firstNode;
+            DoublyLinkedNode<T>? nextNode = null;
             for (int i = 1; i < size; i++)
             {
-                nextNode = new DoublyLinkedNode<Vehicle>();
+                nextNode = new DoublyLinkedNode<T>();
                 pastNode.Next = nextNode;
                 nextNode.Past = pastNode;
                 pastNode = nextNode;
@@ -59,23 +71,23 @@ namespace ClassLibraryHSE1course
             }
             if (size == 1)
             {
-                firstNode = new DoublyLinkedNode<Vehicle>();
+                firstNode = new DoublyLinkedNode<T>();
                 // Randomly choose one of 3 vehicles
-                firstNode.Data = RandomVehicle(min, max);
+                firstNode.Data = randomT.Invoke(min, max);
                 lastNode = firstNode;
                 Length = size;
                 return;
             }
             // size > 1
-            firstNode = new DoublyLinkedNode<Vehicle>(RandomVehicle(min, max));
+            firstNode = new DoublyLinkedNode<T>(randomT.Invoke(min, max));
 
-            DoublyLinkedNode<Vehicle>? pastNode = firstNode;
-            DoublyLinkedNode<Vehicle>? nextNode = null;
+            DoublyLinkedNode<T>? pastNode = firstNode;
+            DoublyLinkedNode<T>? nextNode = null;
             for (int i = 1; i < size; i++)
             {
-                nextNode = new DoublyLinkedNode<Vehicle>();
+                nextNode = new DoublyLinkedNode<T>();
                 // Randomly init one of 3 vehicles
-                nextNode.Data = RandomVehicle(min, max);
+                nextNode.Data = randomT.Invoke(min, max);
                 pastNode.Next = nextNode;
                 nextNode.Past = pastNode;
                 pastNode = nextNode;
@@ -94,7 +106,7 @@ namespace ClassLibraryHSE1course
             else
             {
                 Output.PrintLine("Doubly linked list: ");
-                DoublyLinkedNode<Vehicle>? currentNode;
+                DoublyLinkedNode<T>? currentNode;
                 if (isFromStart) // start from the first
                 {
                     currentNode = firstNode;
@@ -112,7 +124,15 @@ namespace ClassLibraryHSE1course
                     }
                     else
                     {
-                        currentNode.Data.Show();
+                        MethodInfo methodInfo = currentNode.Data.GetType().GetMethod("Show");
+                        if (methodInfo != null)
+                        {
+                            methodInfo.Invoke(currentNode.Data, null);
+                        }
+                        else
+                        {
+                            throw new Exception("No showing method in data type");
+                        }
                     }
 
                     if (isFromStart)
@@ -141,32 +161,32 @@ namespace ClassLibraryHSE1course
         {
             if (Length == 0) // empty
             {
-                firstNode = new DoublyLinkedNode<Vehicle>(RandomVehicle(min, max));
+                firstNode = new DoublyLinkedNode<T>(randomT.Invoke(min, max));
                 lastNode = firstNode;
             }
             else if (num >= Length) // last
             {
-                DoublyLinkedNode<Vehicle> addedNode = new DoublyLinkedNode<Vehicle>(RandomVehicle(min, max));
+                DoublyLinkedNode<T> addedNode = new DoublyLinkedNode<T>(randomT.Invoke(min, max));
                 addedNode.Past = lastNode;
                 lastNode.Next = addedNode;
                 lastNode = addedNode;
             }
             else if (num == 0) // first
             {
-                DoublyLinkedNode<Vehicle> addedNode = new DoublyLinkedNode<Vehicle>(RandomVehicle(min, max));
+                DoublyLinkedNode<T> addedNode = new DoublyLinkedNode<T>(randomT.Invoke(min, max));
                 addedNode.Next = firstNode;
                 firstNode.Past = addedNode;
                 firstNode = addedNode;
             }
             else
             {
-                DoublyLinkedNode<Vehicle>? currentNode = firstNode;
+                DoublyLinkedNode<T>? currentNode = firstNode;
                 for (int i = 1; i < Length; i++)
                 {
 
                     if (i == num)
                     {
-                        DoublyLinkedNode<Vehicle> node = new DoublyLinkedNode<Vehicle>(RandomVehicle(min, max));
+                        DoublyLinkedNode<T> node = new DoublyLinkedNode<T>(randomT.Invoke(min, max));
                         if (currentNode.Next != null)
                         {
                             node.Next = currentNode.Next;
@@ -188,36 +208,13 @@ namespace ClassLibraryHSE1course
 
         }
 
-        public DoublyLinkedList DeepCopy()
+        /*public DoublyLinkedList DeepCopy()
         {
             DoublyLinkedList list = new DoublyLinkedList();
             return list;
-        }
+        }*/
 
 
-        private Vehicle RandomVehicle(int min, int max)
-        {
-            Vehicle vehicle = new Vehicle();
-            int vehicleType = rnd.Next(1, 4);
-            switch (vehicleType)
-            {
-                case 1: // car
-                    Car car = new Car();
-                    car.RandomInit(min, max);
-                    vehicle = car;
-                    break;
-                case 2: // train
-                    Train train = new Train();
-                    train.RandomInit(min, max);
-                    vehicle = train;
-                    break;
-                case 3: // express
-                    Express express = new Express();
-                    express.RandomInit(min, max);
-                    vehicle = express;
-                    break;
-            }
-            return vehicle;
-        }
+       
     }
 }

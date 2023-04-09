@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography.X509Certificates;
 using ClassLibraryHSE1course;
 
 namespace lab
@@ -25,13 +26,43 @@ namespace lab
             Console.Write(str);
             //Console.ResetColor();
         }
+
+        private static Vehicle RandomVehicle(int min, int max)
+        {
+            Vehicle vehicle = new Vehicle();
+            Random rnd = new Random();
+            int vehicleType = rnd.Next(1, 4);
+            switch (vehicleType)
+            {
+                case 1: // car
+                    Car car = new Car();
+                    car.RandomInit(min, max);
+                    vehicle = car;
+                    break;
+                case 2: // train
+                    Train train = new Train();
+                    train.RandomInit(min, max);
+                    vehicle = train;
+                    break;
+                case 3: // express
+                    Express express = new Express();
+                    express.RandomInit(min, max);
+                    vehicle = express;
+                    break;
+            }
+            return vehicle;
+        }
+
         static void Main(string[] args)
         {
             Output.AddPrinterLine(PrintLine);
             Output.AddPrinter(Print);
+            DoublyLinkedList<Vehicle> list = new DoublyLinkedList<Vehicle>();
+            DoublyLinkedList<Vehicle>.randomT = RandomVehicle;
+            //list.AssignRandomT(RandomVehicle);
 
             /*// random linked list with from start showing
-            DoublyLinkedList list = new DoublyLinkedList(10,1,5);
+            list = new DoublyLinkedList<Vehicle>(10,1,5);
             list.Show(isFromStart: true);
             Input.Cont();
             Console.Clear();
@@ -41,7 +72,7 @@ namespace lab
             Console.Clear();
 
             // adding to empty linked list
-            list = new DoublyLinkedList();
+            list = new DoublyLinkedList<Vehicle>();
             list.Show(isFromStart:true);
             list.AddRandomByNumber(123,1,1);
             list.Show(isFromStart: true);
@@ -60,7 +91,7 @@ namespace lab
             int collectionNumber;
             int menuNumber;
             int fillType;
-            DoublyLinkedList list = new DoublyLinkedList();
+            
             do
             {
                 Output.Menu();
@@ -79,7 +110,7 @@ namespace lab
                                     int min;
                                     int max;
                                     Input.RndNumbRange(out min, out max);
-                                    list = new DoublyLinkedList(len, min, max);
+                                    list = new DoublyLinkedList<Vehicle>(len, min, max);
                                     PrintLine("Doubly linked list successfully created");
                                     Input.Cont();
                                     break;
@@ -96,7 +127,7 @@ namespace lab
                                     Input.Cont();
                                     break;
                                 case 5: // delete
-                                    list = new DoublyLinkedList();
+                                    list = new DoublyLinkedList<Vehicle>();
                                     Input.Cont();
                                     break;
                             }
