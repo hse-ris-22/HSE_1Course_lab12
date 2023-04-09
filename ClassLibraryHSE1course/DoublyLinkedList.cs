@@ -7,8 +7,8 @@ namespace ClassLibraryHSE1course
     public class DoublyLinkedList
     {
         static Random rnd = new Random();
-        private DoublyLinkedNode ?firstNode;
-        private DoublyLinkedNode ?lastNode;
+        private DoublyLinkedNode<Vehicle> ?firstNode;
+        private DoublyLinkedNode<Vehicle>? lastNode;
         public int Length { get; private set; }
 
         public DoublyLinkedList()
@@ -28,18 +28,18 @@ namespace ClassLibraryHSE1course
             }
             if (size == 1)
             {
-                firstNode = new DoublyLinkedNode();
+                firstNode = new DoublyLinkedNode<Vehicle>();
                 lastNode = firstNode;
                 Length = size;
                 return;
             }
             // size > 1
-            firstNode = new DoublyLinkedNode();
-            DoublyLinkedNode ?pastNode = firstNode;
-            DoublyLinkedNode ?nextNode = null;
+            firstNode = new DoublyLinkedNode<Vehicle>();
+            DoublyLinkedNode<Vehicle>? pastNode = firstNode;
+            DoublyLinkedNode<Vehicle>? nextNode = null;
             for (int i = 1; i < size; i++)
             {
-                nextNode = new DoublyLinkedNode();
+                nextNode = new DoublyLinkedNode<Vehicle>();
                 pastNode.Next = nextNode;
                 nextNode.Past = pastNode;
                 pastNode = nextNode;
@@ -59,7 +59,7 @@ namespace ClassLibraryHSE1course
             }
             if (size == 1)
             {
-                firstNode = new DoublyLinkedNode();
+                firstNode = new DoublyLinkedNode<Vehicle>();
                 // Randomly choose one of 3 vehicles
                 firstNode.Data = RandomVehicle(min, max);
                 lastNode = firstNode;
@@ -67,13 +67,13 @@ namespace ClassLibraryHSE1course
                 return;
             }
             // size > 1
-            firstNode = new DoublyLinkedNode(RandomVehicle(min, max));
+            firstNode = new DoublyLinkedNode<Vehicle>(RandomVehicle(min, max));
 
-            DoublyLinkedNode? pastNode = firstNode;
-            DoublyLinkedNode? nextNode = null;
+            DoublyLinkedNode<Vehicle>? pastNode = firstNode;
+            DoublyLinkedNode<Vehicle>? nextNode = null;
             for (int i = 1; i < size; i++)
             {
-                nextNode = new DoublyLinkedNode();
+                nextNode = new DoublyLinkedNode<Vehicle>();
                 // Randomly init one of 3 vehicles
                 nextNode.Data = RandomVehicle(min, max);
                 pastNode.Next = nextNode;
@@ -94,7 +94,7 @@ namespace ClassLibraryHSE1course
             else
             {
                 Output.PrintLine("Doubly linked list: ");
-                DoublyLinkedNode? currentNode;
+                DoublyLinkedNode<Vehicle>? currentNode;
                 if (isFromStart) // start from the first
                 {
                     currentNode = firstNode;
@@ -141,32 +141,32 @@ namespace ClassLibraryHSE1course
         {
             if (Length == 0) // empty
             {
-                firstNode = new DoublyLinkedNode(RandomVehicle(min, max));
+                firstNode = new DoublyLinkedNode<Vehicle>(RandomVehicle(min, max));
                 lastNode = firstNode;
             }
             else if (num >= Length) // last
             {
-                DoublyLinkedNode addedNode = new DoublyLinkedNode(RandomVehicle(min, max));
+                DoublyLinkedNode<Vehicle> addedNode = new DoublyLinkedNode<Vehicle>(RandomVehicle(min, max));
                 addedNode.Past = lastNode;
                 lastNode.Next = addedNode;
                 lastNode = addedNode;
             }
             else if (num == 0) // first
             {
-                DoublyLinkedNode addedNode = new DoublyLinkedNode(RandomVehicle(min, max));
+                DoublyLinkedNode<Vehicle> addedNode = new DoublyLinkedNode<Vehicle>(RandomVehicle(min, max));
                 addedNode.Next = firstNode;
                 firstNode.Past = addedNode;
                 firstNode = addedNode;
             }
             else
             {
-                DoublyLinkedNode ?currentNode = firstNode;
+                DoublyLinkedNode<Vehicle>? currentNode = firstNode;
                 for (int i = 1; i < Length; i++)
                 {
 
                     if (i == num)
                     {
-                        DoublyLinkedNode node = new DoublyLinkedNode(RandomVehicle(min, max));
+                        DoublyLinkedNode<Vehicle> node = new DoublyLinkedNode<Vehicle>(RandomVehicle(min, max));
                         if (currentNode.Next != null)
                         {
                             node.Next = currentNode.Next;
@@ -187,6 +187,13 @@ namespace ClassLibraryHSE1course
             Length += 1;
 
         }
+
+        public DoublyLinkedList DeepCopy()
+        {
+            DoublyLinkedList list = new DoublyLinkedList();
+            return list;
+        }
+
 
         private Vehicle RandomVehicle(int min, int max)
         {
@@ -212,5 +219,5 @@ namespace ClassLibraryHSE1course
             }
             return vehicle;
         }
-    } 
+    }
 }

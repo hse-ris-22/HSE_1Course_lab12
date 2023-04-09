@@ -48,9 +48,10 @@ namespace lab
         public static void Menu()
         {
             PrintLine("Choose data type using arrows. Press enter to confirm your choice");
-            PrintLine("1 - Hashtable");
-            PrintLine("2 - Oueue<T>");
-            PrintLine("3 - List <T> and Dictionary <K,T> (exersice 3)");
+            PrintLine("1 - Doubly linked list");
+            PrintLine("2 - ...");
+            PrintLine("3 - ...");
+            PrintLine("4 - ...");
             PrintLine("0 - Shut down");
         }
 
@@ -86,11 +87,8 @@ namespace lab
                 PrintLine("1 - Form new collection");
                 PrintLine("2 - Print collection");
                 PrintLine("3 - Add collection element");
-                PrintLine("4 - Delete collection element");
-                PrintLine("5 - Select a query");
-                PrintLine("6 - Сopy collection (demonstration)");
-                PrintLine("7 - Sort");
-                PrintLine("8 - Search");
+                PrintLine("4 - Сopy collection (demonstration)");
+                PrintLine("5 - Delete collection");
                 PrintLine("0 - Back");
             }
             else if (type == 2)
@@ -98,11 +96,13 @@ namespace lab
                 PrintLine("Choose command using arrows. Press enter to confirm your choice");
                 PrintLine("1 - Form new collections");
                 PrintLine("2 - Print collections");
-                PrintLine("3 - Add collections element");
-                PrintLine("4 - Delete collections element");
-                PrintLine("5 - Search (demonstration)");
+                PrintLine("3 - min element");
+                PrintLine("4 - transform");
+                PrintLine("5 - Сopy collection (demonstration)");
+                PrintLine("6 - Delete collection");
                 PrintLine("0 - Back");
             }
+            // ...
         }
 
         public static void PrintClasses(int i)

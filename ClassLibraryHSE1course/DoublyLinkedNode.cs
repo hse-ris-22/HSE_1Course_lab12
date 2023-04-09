@@ -4,18 +4,18 @@ using lab;
 namespace ClassLibraryHSE1course
 {
     [ExcludeFromCodeCoverage]
-    public class DoublyLinkedNode
+    public class DoublyLinkedNode<T>
     {
-        public Vehicle Data { get; set; }
-        public DoublyLinkedNode ?Next { get; set; }
-        public DoublyLinkedNode ?Past { get; set; }
+        public T Data { get; set; }
+        public DoublyLinkedNode<T> ?Next { get; set; }
+        public DoublyLinkedNode<T> ?Past { get; set; }
         public DoublyLinkedNode()
         {
-            Data = new Vehicle();
+            Data = default(T);
             Next = null;
             Past = null;
         }
-        public DoublyLinkedNode(Vehicle data)
+        public DoublyLinkedNode(T data)
         {
             Data = data;
             Next = null;
