@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace ClassLibraryHSE1course
 {
-    public class Vehicle :  IComparable,IInit
+    public class Vehicle :  IComparable,IInit, ICloneable
     {
         // Fields
         protected double mass = 0; // Kg

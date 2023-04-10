@@ -2,7 +2,7 @@
 
 namespace ClassLibraryHSE1course
 {
-    public interface IInit
+    public interface IInit: ICloneable
     {
         void Show();
         void Init();

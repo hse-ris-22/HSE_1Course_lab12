@@ -128,7 +128,7 @@ namespace lab
                 fl = true;
                 if (typeMes == 2)
                 {
-                    min = ReadInt("Enter the minimum length of array(>=0)");
+                    min = ReadInt("Enter the minimum length of collection(>=0)");
                     if (min < 0)
                     {
                         Output.PrintLine("Error! the length cannot be negative number. Repeat enter");
@@ -136,13 +136,13 @@ namespace lab
                     }
                     else
                     {
-                        max = ReadInt("Enter the maximum length of array");
+                        max = ReadInt("Enter the maximum length of collection");
                     }
                 }
                 else
                 {
-                    min = ReadInt("Enter the minimum value of array class elements");
-                    max = ReadInt("Enter the maximum value of array class elements");
+                    min = ReadInt("Enter the minimum value of collection elements");
+                    max = ReadInt("Enter the maximum value of collection elements");
                 }
                 if (max<min)
                 {

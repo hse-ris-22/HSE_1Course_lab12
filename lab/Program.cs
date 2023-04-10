@@ -59,39 +59,12 @@ namespace lab
             Output.AddPrinter(Print);
             DoublyLinkedList<Vehicle> list = new DoublyLinkedList<Vehicle>();
             DoublyLinkedList<Vehicle>.randomT = RandomVehicle;
-            //list.AssignRandomT(RandomVehicle);
-
-            /*// random linked list with from start showing
-            list = new DoublyLinkedList<Vehicle>(10,1,5);
-            list.Show(isFromStart: true);
-            Input.Cont();
-            Console.Clear();
-            // random linked list with from end showing
-            list.Show(isFromStart: false);
-            Input.Cont();
-            Console.Clear();
-
-            // adding to empty linked list
-            list = new DoublyLinkedList<Vehicle>();
-            list.Show(isFromStart:true);
-            list.AddRandomByNumber(123,1,1);
-            list.Show(isFromStart: true);
-            list.AddRandomByNumber(0, 2, 2);
-            list.Show(isFromStart: true);
-            list.AddRandomByNumber(123, 3, 3);
-            list.Show(isFromStart: true);
-            list.AddRandomByNumber(2, 4, 4);
-            list.Show(isFromStart: true);
-            list.AddRandomByNumber(1, 5, 5);
-            list.Show(isFromStart: true);
-            list.AddRandomByNumber(4, 6, 10);
-            list.Show(isFromStart: true);*/
-
 
             int collectionNumber;
             int menuNumber;
             int fillType;
-            
+            int min;
+            int max;
             do
             {
                 Output.Menu();
@@ -106,10 +79,13 @@ namespace lab
                             switch (menuNumber)
                             {
                                 case 1: // Form new collection
-                                    int len = Input.ReadInt("Enter hashtable length", 2);
-                                    int min;
-                                    int max;
-                                    Input.RndNumbRange(out min, out max);
+                                    int len;
+                                    do
+                                    {
+                                        len = Input.ReadInt("Enter list length", 2);
+                                    } while (Input.Warning(len, 1000));
+                                    Console.Clear();
+                                    Input.RndNumbRange(out min, out max, 2);
                                     list = new DoublyLinkedList<Vehicle>(len, min, max);
                                     PrintLine("Doubly linked list successfully created");
                                     Input.Cont();
@@ -119,21 +95,93 @@ namespace lab
                                     Input.Cont();
                                     break;
                                 case 3: // Add element
-
+                                    int pos = Input.ReadInt("Enter the position where the random vehicle will be added", 1);
+                                    Console.Clear();
+                                    Input.RndNumbRange(out min, out max);
+                                    Console.Clear();
+                                    list.AddByNumber(pos-1,RandomVehicle(min,max));
+                                    Console.Clear();
+                                    PrintLine("Doubly linked list successfully created");
                                     Input.Cont();
                                     break;
                                 case 4: // Сopy collection (demonstration)
+                                    // Create original list
+                                    DoublyLinkedList<IInit> testList = new DoublyLinkedList<IInit>();
+                                    PrintLine("Empty original list:");
+                                    testList.Show();
+                                    PrintLine();
 
+                                    DoublyLinkedList<IInit> listEmptyCopy = (DoublyLinkedList<IInit>)testList.Clone();
+                                    PrintLine("Empty copy list:");
+                                    listEmptyCopy.Show();
+                                    PrintLine();
+
+                                    listEmptyCopy.AddByNumber(1, RandomVehicle(3, 3));
+                                    PrintLine("Modified Empty copy:");
+                                    listEmptyCopy.Show();
+                                    PrintLine();
+
+                                    PrintLine("Empty original list:");
+                                    testList.Show();
+                                    PrintLine();
+                                    PrintLine();
+                                    PrintLine();
+
+                                    // Initialization
+                                    Human testHuman = new Human();
+                                    testHuman.RandomInit(100, 100);
+                                    Car TestCar = new Car();
+                                    TestCar.RandomInit(100, 100);
+
+                                    testList.AddByNumber(1, testHuman);
+                                    testList.AddByNumber(2, TestCar);
+
+                                    PrintLine("Original List"); // Print original hashtable
+                                    testList.Show();
+
+                                    DoublyLinkedList<IInit> shallowCopy = (DoublyLinkedList<IInit>)testList.ShallowCopy(); // Shallow copy
+                                    DoublyLinkedList<IInit> deepCopy = (DoublyLinkedList<IInit>)testList.Clone(); // Shallow copy
+
+                                    testHuman.RandomInit(1, 1);
+                                    TestCar.RandomInit(1, 1);
+
+                                    PrintLine("New original List:");
+                                    testList.Show();
+                                    PrintLine();
+
+                                    PrintLine("Shallow copy:");
+                                    shallowCopy.Show();
+                                    PrintLine();
+
+                                    shallowCopy.AddByNumber(3, RandomVehicle(3, 3));
+                                    PrintLine("Modified shallow copy:");
+                                    shallowCopy.Show();
+                                    PrintLine();
+
+                                    PrintLine("Deep copy:");
+                                    deepCopy.Show();
+                                    PrintLine();
+
+                                    deepCopy.AddByNumber(3, RandomVehicle(3, 3));
+                                    PrintLine("Modified deep copy:");
+                                    deepCopy.Show();
+                                    PrintLine();
+
+                                    PrintLine("New original List:");
+                                    testList.Show();
+                                    PrintLine();
                                     Input.Cont();
                                     break;
                                 case 5: // delete
                                     list = new DoublyLinkedList<Vehicle>();
+                                    PrintLine("Doubly linked list successfully deleted");
                                     Input.Cont();
                                     break;
                             }
                         } while (menuNumber != 6);
                         break;
                     case 2:
+                        break;
                         do
                         {
                             Output.DataMenu(2);
@@ -167,6 +215,7 @@ namespace lab
                         } while (menuNumber != 7);
                         break;
                     case 3:
+                        break;
                         do
                         {
                             Output.DataMenu(2);
@@ -197,6 +246,7 @@ namespace lab
                         } while (menuNumber != 6);
                         break;
                     case 4:
+                        break;
                         do
                         {
                             Output.DataMenu(2);

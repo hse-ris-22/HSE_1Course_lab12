@@ -4,7 +4,7 @@ using lab;
 namespace ClassLibraryHSE1course
 {
     [ExcludeFromCodeCoverage]
-    public class DoublyLinkedNode<T>
+    public class DoublyLinkedNode<T>: ICloneable where T:ICloneable
     {
         public T Data { get; set; }
         public DoublyLinkedNode<T> ?Next { get; set; }
@@ -24,6 +24,11 @@ namespace ClassLibraryHSE1course
         public override string ToString()
         {
             return Data.ToString();
+        }
+
+        public object Clone()
+        {
+            return new DoublyLinkedNode<T>((T)Data.Clone());
         }
     }
 }
