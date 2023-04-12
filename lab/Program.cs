@@ -65,6 +65,7 @@ namespace lab
             int fillType;
             int min;
             int max;
+            bool isCreated1 = false;
             do
             {
                 Output.Menu();
@@ -84,24 +85,42 @@ namespace lab
                                     {
                                         len = Input.ReadInt("Enter list length", 2);
                                     } while (Input.Warning(len, 1000));
-                                    Console.Clear();
-                                    Input.RndNumbRange(out min, out max, 2);
-                                    list = new DoublyLinkedList<Vehicle>(len, min, max);
+                                    if (len != 0)
+                                    {
+                                        Console.Clear();
+                                        Input.RndNumbRange(out min, out max, 2);
+                                        list = new DoublyLinkedList<Vehicle>(len, min, max);
+                                    }
                                     PrintLine("Doubly linked list successfully created");
                                     Input.Cont();
+                                    isCreated1 = true;
                                     break;
                                 case 2: // Print
-                                    list.Show();
+                                    if (isCreated1)
+                                    {
+                                        list.Show();
+                                    }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before printing");
+                                    }
                                     Input.Cont();
                                     break;
                                 case 3: // Add element
-                                    int pos = Input.ReadInt("Enter the position where the random vehicle will be added", 1);
-                                    Console.Clear();
-                                    Input.RndNumbRange(out min, out max);
-                                    Console.Clear();
-                                    list.AddByNumber(pos-1,RandomVehicle(min,max));
-                                    Console.Clear();
-                                    PrintLine("Doubly linked list successfully created");
+                                    if (isCreated1)
+                                    {
+                                        int pos = Input.ReadInt("Enter the position where the random vehicle will be added", 1);
+                                        Console.Clear();
+                                        Input.RndNumbRange(out min, out max);
+                                        Console.Clear();
+                                        list.AddByNumber(pos-1, RandomVehicle(min, max));
+                                        Console.Clear();
+                                        PrintLine("Successfully added in Doubly linked list");
+                                    }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before adding");
+                                    }
                                     Input.Cont();
                                     break;
                                 case 4: // Сopy collection (demonstration)
@@ -173,8 +192,16 @@ namespace lab
                                     Input.Cont();
                                     break;
                                 case 5: // delete
-                                    list = new DoublyLinkedList<Vehicle>();
-                                    PrintLine("Doubly linked list successfully deleted");
+                                    if (isCreated1)
+                                    {
+                                        list = new DoublyLinkedList<Vehicle>();
+                                        PrintLine("Doubly linked list successfully deleted");
+                                        isCreated1 = false;
+                                    }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before adding");
+                                    }
                                     Input.Cont();
                                     break;
                             }

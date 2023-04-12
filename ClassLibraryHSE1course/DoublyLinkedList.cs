@@ -23,7 +23,7 @@ namespace ClassLibraryHSE1course
 
         [ExcludeFromCodeCoverage]
         // zero vehicles constructor
-        public DoublyLinkedList(int size)
+        public DoublyLinkedList(int size) // keyboard
         {
             if (size == 0)
             {
@@ -145,59 +145,6 @@ namespace ClassLibraryHSE1course
                 }
             }
         }
-
-        /*// Add the item with the random number to the list
-        // num = 0 - in first element
-        // num >= length - in last element
-        public void AddRandomByNumber(int num, int min = 0, int max = 0)
-        {
-            if (Length == 0) // empty
-            {
-                firstNode = new DoublyLinkedNode<T>(randomT.Invoke(min, max));
-                lastNode = firstNode;
-            }
-            else if (num >= Length) // last
-            {
-                DoublyLinkedNode<T> addedNode = new DoublyLinkedNode<T>(randomT.Invoke(min, max));
-                addedNode.Past = lastNode;
-                lastNode.Next = addedNode;
-                lastNode = addedNode;
-            }
-            else if (num == 0) // first
-            {
-                DoublyLinkedNode<T> addedNode = new DoublyLinkedNode<T>(randomT.Invoke(min, max));
-                addedNode.Next = firstNode;
-                firstNode.Past = addedNode;
-                firstNode = addedNode;
-            }
-            else
-            {
-                DoublyLinkedNode<T>? currentNode = firstNode;
-                for (int i = 1; i < Length; i++)
-                {
-
-                    if (i == num)
-                    {
-                        DoublyLinkedNode<T> node = new DoublyLinkedNode<T>(randomT.Invoke(min, max));
-                        if (currentNode.Next != null)
-                        {
-                            node.Next = currentNode.Next;
-                            currentNode.Next.Past = node;
-                        }
-                        node.Past = currentNode;
-                        currentNode.Next = node;
-                        
-                        break;
-                    }
-
-                    if (currentNode.Next != null)
-                    {
-                        currentNode = currentNode.Next;
-                    }
-                }
-            }
-            Length += 1;
-        }*/
 
         // Add the item with the given number to the list
         // num = 0 - in first element
