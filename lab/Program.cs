@@ -6,9 +6,10 @@ using ClassLibraryHSE1course;
 
 namespace lab
 {
-    [ExcludeFromCodeCoverage]
+    
     internal class Program
     {
+        [ExcludeFromCodeCoverage]
         public static void PrintLine(string str = "")
         {
             //Random rnd = new Random();
@@ -18,6 +19,7 @@ namespace lab
 
             //Console.ResetColor();
         }
+        [ExcludeFromCodeCoverage]
         public static void Print(string str = "")
         {
             //Random rnd = new Random();
@@ -53,12 +55,41 @@ namespace lab
             return vehicle;
         }
 
+        private static Vehicle KeyboardVehicle(int i)
+        {
+            Vehicle vehicle = new Vehicle();
+            Console.Clear();
+            Output.PrintClasses(i);
+            int vehicleType = Input.ReadSwitch(1, 3);
+            switch (vehicleType)
+            {
+                case 1: // car
+                    Car car = new Car();
+                    car.Init();
+                    vehicle = car;
+                    break;
+                case 2: // train
+                    Train train = new Train();
+                    train.Init();
+                    vehicle = train;
+                    break;
+                case 3: // express
+                    Express express = new Express();
+                    express.Init();
+                    vehicle = express;
+                    break;
+            }
+            return vehicle;
+        }
+
+        [ExcludeFromCodeCoverage]
         static void Main(string[] args)
         {
             Output.AddPrinterLine(PrintLine);
             Output.AddPrinter(Print);
             DoublyLinkedList<Vehicle> list = new DoublyLinkedList<Vehicle>();
             DoublyLinkedList<Vehicle>.randomT = RandomVehicle;
+            DoublyLinkedList<Vehicle>.keyboardT = KeyboardVehicle;
 
             int collectionNumber;
             int menuNumber;
@@ -88,9 +119,21 @@ namespace lab
                                     if (len != 0)
                                     {
                                         Console.Clear();
-                                        Input.RndNumbRange(out min, out max, 2);
-                                        list = new DoublyLinkedList<Vehicle>(len, min, max);
+                                        Output.FillTypes();
+                                        fillType = Input.ReadSwitch(1, 2);
+                                        switch (fillType)
+                                        {
+                                            case 1: // Random
+                                                Input.RndNumbRange(out min, out max);
+                                                list = new DoublyLinkedList<Vehicle>(len, min, max);
+                                                break;
+                                            case 2: // Keyboard
+                                                list = new DoublyLinkedList<Vehicle>(len);
+                                                break;
+                                        }
+                                        
                                     }
+                                    Console.Clear();
                                     PrintLine("Doubly linked list successfully created");
                                     Input.Cont();
                                     isCreated1 = true;
@@ -111,9 +154,20 @@ namespace lab
                                     {
                                         int pos = Input.ReadInt("Enter the position where the random vehicle will be added", 1);
                                         Console.Clear();
-                                        Input.RndNumbRange(out min, out max);
-                                        Console.Clear();
-                                        list.AddByNumber(pos-1, RandomVehicle(min, max));
+                                        Output.FillTypes(2);
+                                        fillType = Input.ReadSwitch(1, 2);
+                                        switch (fillType)
+                                        {
+                                            case 1: // Random
+                                                Input.RndNumbRange(out min, out max);
+                                                Console.Clear();
+                                                list.AddByNumber(pos-1, RandomVehicle(min, max));
+                                                break;
+                                            case 2: // Keyboard
+                                                list.AddByNumber(pos-1, KeyboardVehicle(0));
+                                                break;
+                                        }
+                                        
                                         Console.Clear();
                                         PrintLine("Successfully added in Doubly linked list");
                                     }

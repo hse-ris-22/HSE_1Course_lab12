@@ -14,7 +14,10 @@ namespace ClassLibraryHSE1course
         public int Length { get; private set; }
         public delegate T RandomT(int min, int max);
         public static RandomT? randomT;
+        public delegate T KeyboardT(int i);
+        public static KeyboardT? keyboardT;
 
+        [ExcludeFromCodeCoverage]
         public DoublyLinkedList()
         {
             firstNode = null;
@@ -33,17 +36,22 @@ namespace ClassLibraryHSE1course
             if (size == 1)
             {
                 firstNode = new DoublyLinkedNode<T>();
+                // Randomly choose one of 3 vehicles
+                firstNode.Data = keyboardT.Invoke(0);
                 lastNode = firstNode;
                 Length = size;
                 return;
             }
             // size > 1
-            firstNode = new DoublyLinkedNode<T>();
+            firstNode = new DoublyLinkedNode<T>(keyboardT.Invoke(1));
+
             DoublyLinkedNode<T>? pastNode = firstNode;
             DoublyLinkedNode<T>? nextNode = null;
             for (int i = 1; i < size; i++)
             {
                 nextNode = new DoublyLinkedNode<T>();
+                // Randomly init one of 3 vehicles
+                nextNode.Data = keyboardT.Invoke(i+1);
                 pastNode.Next = nextNode;
                 nextNode.Past = pastNode;
                 pastNode = nextNode;

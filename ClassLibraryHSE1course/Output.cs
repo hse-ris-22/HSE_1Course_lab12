@@ -70,7 +70,7 @@ namespace lab
             }
             else if (type == 2)
             {
-                PrintLine("Choose how to fill the Collection using arrows. Press enter to confirm your choice");
+                PrintLine("Choose how to add in the Collection using arrows. Press enter to confirm your choice");
                 PrintLine("1 - Add random vehicles");
                 PrintLine("2 - Add vehicle from the keyboard");
             }
