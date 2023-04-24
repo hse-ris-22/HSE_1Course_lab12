@@ -50,7 +50,7 @@ namespace lab
         {
             PrintLine("Choose data type using arrows. Press enter to confirm your choice");
             PrintLine("1 - Doubly linked list");
-            PrintLine("2 - ...");
+            PrintLine("2 - Binary Tree");
             PrintLine("3 - ...");
             PrintLine("4 - ...");
             PrintLine("0 - Shut down");

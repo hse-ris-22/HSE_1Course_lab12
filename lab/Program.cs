@@ -59,6 +59,8 @@ namespace lab
             Output.AddPrinter(Print);
             DoublyLinkedList<Vehicle> list = new DoublyLinkedList<Vehicle>();
             DoublyLinkedList<Vehicle>.randomT = RandomVehicle;
+            BinaryTree<Vehicle> tree = new BinaryTree<Vehicle>();
+            BinaryTree<Vehicle>.randomT = RandomVehicle;
 
             int collectionNumber;
             int menuNumber;
@@ -66,6 +68,7 @@ namespace lab
             int min;
             int max;
             bool isCreated1 = false;
+            bool isCreated2 = false;
             do
             {
                 Output.Menu();
@@ -208,7 +211,6 @@ namespace lab
                         } while (menuNumber != 6);
                         break;
                     case 2:
-                        break;
                         do
                         {
                             Output.DataMenu(2);
@@ -216,12 +218,30 @@ namespace lab
                             switch (menuNumber)
                             {
                                 case 1: // Form new collection
-
-                                    PrintLine("Hashtable successfully created");
+                                    int len;
+                                    do
+                                    {
+                                        len = Input.ReadInt("Enter tree length", 2);
+                                    } while (Input.Warning(len, 1000));
+                                    if (len != 0)
+                                    {
+                                        Console.Clear();
+                                        Input.RndNumbRange(out min, out max, 2);
+                                        tree = new BinaryTree<Vehicle>(len, min, max);
+                                    }
+                                    PrintLine("Binary tree successfully created");
                                     Input.Cont();
+                                    isCreated2 = true;
                                     break;
                                 case 2: // Print
-
+                                    if (isCreated2)
+                                    {
+                                        tree.Show();
+                                    }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before printing");
+                                    }
                                     Input.Cont();
                                     break;
                                 case 3: // min

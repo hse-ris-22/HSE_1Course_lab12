@@ -29,6 +29,7 @@ namespace ClassLibraryHSE1course
             {
                 firstNode = null;
                 lastNode = null;
+                return;
             }
             if (size == 1)
             {
@@ -60,6 +61,7 @@ namespace ClassLibraryHSE1course
             {
                 firstNode = null;
                 lastNode = null;
+                return;
             }
             if (size == 1)
             {
