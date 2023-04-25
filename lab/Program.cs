@@ -258,7 +258,7 @@ namespace lab
                                     }
                                     else
                                     {
-                                        PrintLine("Necessary to form new collection before adding");
+                                        PrintLine("Necessary to form new collection before deleting");
                                     }
                                     Input.Cont();
                                     break;
@@ -323,22 +323,39 @@ namespace lab
                                         {
                                             PrintLine("Empty element");
                                         }
-                                        
                                     }
                                     else
                                     {
-                                        PrintLine("Necessary to form new collection before printing");
+                                        PrintLine("Necessary to form new collection before searching");
                                     }
                                     Input.Cont();
                                     break;
                                 case 4: // transform
-
+                                    if (isCreated2)
+                                    {
+                                        tree.FormSearch();
+                                        PrintLine("Perfectly balanced search tree successfully created");
+                                    }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before transforming");
+                                    }
                                     Input.Cont();
                                     break;
                                 case 5: // Сopy collection (demonstration)
                                     Input.Cont();
                                     break;
                                 case 6: // delete
+                                    if (isCreated2)
+                                    {
+                                        tree = new BinaryTree<Vehicle>();
+                                        PrintLine("Binary tree successfully deleted");
+                                        isCreated2 = false;
+                                    }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before deleting");
+                                    }
                                     Input.Cont();
                                     break;
                             }

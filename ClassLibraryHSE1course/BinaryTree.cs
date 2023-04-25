@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using lab;
 using static lab.Output;
+using System.Drawing;
 
 namespace ClassLibraryHSE1course
 {
@@ -75,6 +76,14 @@ namespace ClassLibraryHSE1course
         {
             return root.MinElement();
 
+        }
+
+        public void FormSearch()
+        {
+            List<T> list = root.FormList();
+            list.Sort();
+            root.FormSearchTree(list);
+            Height = (int)MathF.Ceiling(MathF.Log2(Length + 1));
         }
 
         public object Clone()

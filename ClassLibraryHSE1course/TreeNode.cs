@@ -6,6 +6,8 @@ using System.Text;
 using lab;
 using System.Threading.Tasks;
 using System.Reflection;
+using System.Collections;
+using System.Drawing;
 
 namespace ClassLibraryHSE1course
 {
@@ -114,6 +116,55 @@ namespace ClassLibraryHSE1course
                 return min;
             }
             return default;
+        }
+
+        public List<T> FormList()
+        {
+            if (this != null)
+            {
+                List<T> list = new List<T>();
+                if (this.Data != null)
+                {
+                    list.Add((T)this.Data.Clone());
+                }
+                if (this.Left != null)
+                {
+                    List<T> llist = this.Left.FormList();
+                    foreach (T i in llist) 
+                    {
+                        list.Add(i);
+                    }
+                }
+                if (this.Right != null)
+                {
+                    List<T> rlist = this.Right.FormList();
+                    foreach (T i in rlist)
+                    {
+                        list.Add(i);
+                    }
+                }
+                return list;
+            }
+            return new List<T>();
+        }
+
+        public void FormSearchTree(List<T> list)
+        {
+            int len = list.Count;
+            if (len == 0) 
+            {
+                Data = default;
+                Left = null;
+                Right = null;
+            }
+            Data = list[len/2];
+            List<T> leftlist = list.GetRange(0, len/2);
+            List<T> rightlist = list.GetRange(len/2+1,(len-1)/2);
+            if (leftlist.Count == 0) Left = null;
+            else Left?.FormSearchTree(leftlist);
+
+            if (rightlist.Count == 0) Right = null;
+            else Right?.FormSearchTree(rightlist);
         }
 
         public object Clone()
