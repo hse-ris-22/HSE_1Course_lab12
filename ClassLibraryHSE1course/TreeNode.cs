@@ -10,7 +10,7 @@ using System.Reflection;
 namespace ClassLibraryHSE1course
 {
     [ExcludeFromCodeCoverage]
-    public class TreeNode<T> : ICloneable where T : ICloneable
+    public class TreeNode<T> : ICloneable where T : ICloneable,IComparable
     {
         public T Data { get; set; }
         public TreeNode<T>? Right { get; set; }
@@ -84,7 +84,36 @@ namespace ClassLibraryHSE1course
             }
             Output.PrintLine("");
             if (Left != null) Left.Show(len+5);
+        }
 
+        public T MinElement()
+        {
+            if (this != null)
+            {
+                T? lmin = default;
+                T? rmin = default;
+                T? min = default;
+                if (this.Data == null)
+                {
+                    return min;
+                }
+                else
+                {
+                    min = this.Data;
+                }
+                if (this.Left != null)
+                {
+                    lmin = this.Left.MinElement();
+                    if (lmin.CompareTo(min) < 0) min = lmin;
+                }
+                if (this.Right != null)
+                {
+                    rmin = this.Right.MinElement();
+                    if (rmin.CompareTo(min) < 0) min = rmin;
+                }
+                return min;
+            }
+            return default;
         }
 
         public object Clone()

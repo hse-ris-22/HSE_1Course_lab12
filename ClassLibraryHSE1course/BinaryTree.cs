@@ -10,7 +10,7 @@ using static lab.Output;
 
 namespace ClassLibraryHSE1course
 {
-    public class BinaryTree<T>: ICloneable where T : ICloneable
+    public class BinaryTree<T>: ICloneable where T : ICloneable, IComparable
     {
         static Random rnd = new Random();
         private TreeNode<T>? root;
@@ -69,6 +69,12 @@ namespace ClassLibraryHSE1course
             {
                 root.Show();
             }
+        }
+
+        public T MinElement()
+        {
+            return root.MinElement();
+
         }
 
         public object Clone()

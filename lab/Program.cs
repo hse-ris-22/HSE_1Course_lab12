@@ -311,7 +311,24 @@ namespace lab
                                     Input.Cont();
                                     break;
                                 case 3: // min
-
+                                    if (isCreated2)
+                                    {
+                                        PrintLine("Minimum tree value: ");
+                                        Vehicle mn = tree.MinElement();
+                                        if (mn != null)
+                                        {
+                                            tree.MinElement().Show();
+                                        }
+                                        else
+                                        {
+                                            PrintLine("Empty element");
+                                        }
+                                        
+                                    }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before printing");
+                                    }
                                     Input.Cont();
                                     break;
                                 case 4: // transform
