@@ -101,6 +101,7 @@ namespace lab
             int max;
             bool isCreated1 = false;
             bool isCreated2 = false;
+            bool isSorted2 = false;
             do
             {
                 Output.Menu();
@@ -136,6 +137,10 @@ namespace lab
                                                 break;
                                         }
                                         
+                                    }
+                                    else
+                                    {
+                                        list = new DoublyLinkedList<Vehicle>();
                                     }
                                     Console.Clear();
                                     PrintLine("Doubly linked list successfully created");
@@ -277,7 +282,7 @@ namespace lab
                                     do
                                     {
                                         len = Input.ReadInt("Enter tree length", 2);
-                                    } while (Input.Warning(len, 1000));
+                                    } while (Input.Warning(len, 100));
                                     if (len != 0)
                                     {
                                         Console.Clear();
@@ -294,10 +299,15 @@ namespace lab
                                                 break;
                                         }
                                     }
+                                    else
+                                    {
+                                        tree = new BinaryTree<Vehicle>();
+                                    }
                                     Console.Clear();
                                     PrintLine("Binary tree successfully created");
                                     Input.Cont();
                                     isCreated2 = true;
+                                    isSorted2 = false;
                                     break;
                                 case 2: // Print
                                     if (isCreated2)
@@ -313,15 +323,23 @@ namespace lab
                                 case 3: // min
                                     if (isCreated2)
                                     {
-                                        PrintLine("Minimum tree value: ");
-                                        Vehicle mn = tree.MinElement();
-                                        if (mn != null)
+                                        if (tree.Length != 0)
                                         {
-                                            tree.MinElement().Show();
+                                            PrintLine("Minimum tree value: ");
+
+                                            Vehicle mn = tree.MinElement(isSorted2);
+                                            if (mn != null)
+                                            {
+                                                mn.Show();
+                                            }
+                                            else
+                                            {
+                                                PrintLine("Empty element");
+                                            }
                                         }
                                         else
                                         {
-                                            PrintLine("Empty element");
+                                            PrintLine("Empty tree");
                                         }
                                     }
                                     else
@@ -333,13 +351,23 @@ namespace lab
                                 case 4: // transform
                                     if (isCreated2)
                                     {
-                                        tree.FormSearch();
-                                        PrintLine("Perfectly balanced search tree successfully created");
+                                        if (tree.Length != 0)
+                                        {
+                                            tree.FormSearch();
+                                            isSorted2 = true;
+                                            PrintLine("Perfectly balanced search tree successfully created");
+                                        }
+                                        else
+                                        {
+                                            PrintLine("Impossible to transform empty tree");
+                                        }
+                                            
                                     }
                                     else
                                     {
                                         PrintLine("Necessary to form new collection before transforming");
                                     }
+
                                     Input.Cont();
                                     break;
                                 case 5: // Сopy collection (demonstration)
@@ -351,6 +379,7 @@ namespace lab
                                         tree = new BinaryTree<Vehicle>();
                                         PrintLine("Binary tree successfully deleted");
                                         isCreated2 = false;
+                                        isSorted2 = false;
                                     }
                                     else
                                     {

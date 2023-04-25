@@ -129,7 +129,7 @@ namespace ClassLibraryHSE1course
                         MethodInfo methodInfo = currentNode.Data.GetType().GetMethod("Show");
                         if (methodInfo != null)
                         {
-                            methodInfo.Invoke(currentNode.Data, null);
+                            methodInfo.Invoke(currentNode.Data, new object[] { 0 });
                         }
                         else
                         {

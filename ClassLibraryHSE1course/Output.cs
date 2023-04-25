@@ -97,8 +97,8 @@ namespace lab
                 PrintLine("Choose command using arrows. Press enter to confirm your choice");
                 PrintLine("1 - Form new collections");
                 PrintLine("2 - Print collections");
-                PrintLine("3 - min element");
-                PrintLine("4 - transform");
+                PrintLine("3 - Search for min element");
+                PrintLine("4 - Perfectly balanced search tree");
                 PrintLine("5 - Сopy collection (demonstration)");
                 PrintLine("6 - Delete collection");
                 PrintLine("0 - Back");

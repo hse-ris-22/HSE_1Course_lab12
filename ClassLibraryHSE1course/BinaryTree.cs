@@ -72,10 +72,24 @@ namespace ClassLibraryHSE1course
             }
         }
 
-        public T MinElement()
+        public T MinElement(bool isSearchTree)
         {
-            return root.MinElement();
-
+            if (isSearchTree)
+            {
+                TreeNode<T>? tempRoot;
+                if (root != null) tempRoot = root;
+                else tempRoot = null;
+                while (tempRoot.Left != null)
+                {
+                    tempRoot = tempRoot.Left;
+                }
+                return tempRoot.Data;
+            }
+            else
+            {
+                return root.MinElement();
+            }
+            
         }
 
         public void FormSearch()
