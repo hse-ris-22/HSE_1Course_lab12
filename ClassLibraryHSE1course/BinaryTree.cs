@@ -19,6 +19,8 @@ namespace ClassLibraryHSE1course
 
         public delegate T RandomT(int min, int max);
         public static RandomT? randomT;
+        public delegate T KeyboardT(int i);
+        public static KeyboardT? keyboardT;
 
         public BinaryTree()
         {
@@ -39,7 +41,7 @@ namespace ClassLibraryHSE1course
                 return;
             }
             // size > 1
-            root = new TreeNode<T>(size);
+            root = new TreeNode<T>(size, 1);
         }
 
         [ExcludeFromCodeCoverage]

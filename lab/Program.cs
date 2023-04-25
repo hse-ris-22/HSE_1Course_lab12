@@ -92,6 +92,7 @@ namespace lab
             DoublyLinkedList<Vehicle>.keyboardT = KeyboardVehicle;
             BinaryTree<Vehicle> tree = new BinaryTree<Vehicle>();
             BinaryTree<Vehicle>.randomT = RandomVehicle;
+            BinaryTree<Vehicle>.keyboardT = KeyboardVehicle;
 
             int collectionNumber;
             int menuNumber;
@@ -280,9 +281,20 @@ namespace lab
                                     if (len != 0)
                                     {
                                         Console.Clear();
-                                        Input.RndNumbRange(out min, out max, 2);
-                                        tree = new BinaryTree<Vehicle>(len, min, max);
+                                        Output.FillTypes();
+                                        fillType = Input.ReadSwitch(1, 2);
+                                        switch (fillType)
+                                        {
+                                            case 1: // Random
+                                                Input.RndNumbRange(out min, out max);
+                                                tree = new BinaryTree<Vehicle>(len, min, max);
+                                                break;
+                                            case 2: // Keyboard
+                                                tree = new BinaryTree<Vehicle>(len);
+                                                break;
+                                        }
                                     }
+                                    Console.Clear();
                                     PrintLine("Binary tree successfully created");
                                     Input.Cont();
                                     isCreated2 = true;

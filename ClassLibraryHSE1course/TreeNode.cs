@@ -29,7 +29,7 @@ namespace ClassLibraryHSE1course
             Right = null;
         }
 
-        public TreeNode(int size)
+        public TreeNode(int size, int ind)
         {
             if (size == 0)
             {
@@ -37,14 +37,14 @@ namespace ClassLibraryHSE1course
                 Left = null;
                 Right = null;
             }
-            Data = default(T);
+            Data = BinaryTree<T>.keyboardT.Invoke(ind);
             int leftSize = size/2;
             int rightSize = size - leftSize - 1;
             if (leftSize == 0) Left = null;
-            else Left = new TreeNode<T>(leftSize);
+            else Left = new TreeNode<T>(leftSize, ind + 1);
 
             if (rightSize == 0) Right = null;
-            else Right = new TreeNode<T>(rightSize);
+            else Right = new TreeNode<T>(rightSize, size/2+ind+1);
         }
 
         public TreeNode(int size, int min, int max)
