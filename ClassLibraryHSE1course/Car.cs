@@ -117,9 +117,9 @@ namespace ClassLibraryHSE1course
 
         // Methods (virtual)
         [ExcludeFromCodeCoverage]
-        public override void Show()
+        public override void Show(int ln = 0)
         {
-            base.Show();
+            base.Show(ln);
             Output.PrintLine($", fuel capacity = {FuelCapacity}, fuel consumption = {FuelConsumption}, maneuverability = {Maneuverability}, mileage = {Mileage}");
         }
 

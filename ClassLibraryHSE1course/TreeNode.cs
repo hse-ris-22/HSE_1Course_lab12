@@ -70,24 +70,20 @@ namespace ClassLibraryHSE1course
             return Data.ToString();
         }
 
-        public void Show(int len)
+        public void Show(int len=0)
         {
-            if (Left != null) Left.Show(len+3);
-            for (int i = 0; i < len; i++)
-            {
-                Output.Print("");
-            }
+            if (Right != null) Right.Show(len+5);
             MethodInfo methodInfo = Data.GetType().GetMethod("Show");
             if (methodInfo != null)
             {
-                methodInfo.Invoke(Data, null);
+                methodInfo.Invoke(Data, new object[] { len});
             }
             else
             {
                 throw new Exception("No showing method in data type");
             }
             Output.PrintLine("");
-            if (Right != null) Right.Show(len+3);
+            if (Left != null) Left.Show(len+5);
 
         }
 

@@ -115,8 +115,12 @@ namespace ClassLibraryHSE1course
 
         // Method (virtual)
         [ExcludeFromCodeCoverage]
-        public virtual void Show()
+        public virtual void Show(int ln = 0)
         {
+            for (int i = 0; i < ln; i++)
+            {
+                Output.Print(" ");
+            }
             Output.Print($"Mass = {Mass}, maximum speed = {MaxSpeed}, power = {Power}, passenger capacity = {PassengerCapacity}");
         }
 

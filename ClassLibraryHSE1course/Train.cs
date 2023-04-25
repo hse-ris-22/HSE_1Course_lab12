@@ -76,13 +76,17 @@ namespace ClassLibraryHSE1course
 
         //Methods (virtual)
         [ExcludeFromCodeCoverage]
-        public override void Show()
+        public override void Show(int ln = 0)
         {
-            base.Show();
+            base.Show(ln);
             Output.PrintLine($", number of wagons = {Wagons.Length}");
-
+            for (int i = 0; i < ln; i++)
+            {
+                Output.Print(" ");
+            }
             if (Wagons.Length > 0)
             {
+                
                 Output.Print("Wagons passengers: ");
                 foreach (int i in Wagons)
                 {

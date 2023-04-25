@@ -65,7 +65,7 @@ namespace ClassLibraryHSE1course
             }
             else
             {
-                root.Show(Length);
+                root.Show();
             }
         }
 

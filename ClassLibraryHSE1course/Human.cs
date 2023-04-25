@@ -34,8 +34,12 @@ namespace ClassLibraryHSE1course
             PersonalCar = personalCar;
         }
         [ExcludeFromCodeCoverage]
-        public void Show()
+        public void Show(int ln)
         {
+            for (int i = 0; i < ln; i++)
+            {
+                Output.Print(" ");
+            }
             Output.PrintLine($"Weight = {Weight}, height = {Height}, Human perosnal car:");
             PersonalCar.Show();
         }
