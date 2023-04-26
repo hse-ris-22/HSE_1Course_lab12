@@ -80,7 +80,7 @@ namespace lab
         /// Write the menu of command choosing in the consol 
         /// </summary>
         /// <param name="arrType">type of datas</param>
-        public static void DataMenu(int type = 1)
+        public static void DataMenu(int type = 1, bool isSorted = false)
         {
             if (type == 1)
             {
@@ -97,10 +97,32 @@ namespace lab
                 PrintLine("Choose command using arrows. Press enter to confirm your choice");
                 PrintLine("1 - Form new collections");
                 PrintLine("2 - Print collections");
-                PrintLine("3 - Search for min element");
-                PrintLine("4 - Perfectly balanced search tree");
-                PrintLine("5 - Сopy collection (demonstration)");
-                PrintLine("6 - Delete collection");
+                if (isSorted)
+                {
+                    PrintLine("3 - Add search tree value");
+                }
+                else
+                {
+                    PrintLine("3 - Add value");
+                }
+                if (isSorted)
+                {
+                    PrintLine("4 - Binary search for min element");
+                }
+                else
+                {
+                    PrintLine("4 - Search for min element");
+                }
+                if (isSorted)
+                {
+                    PrintLine("5 - Perfectly balanced NON-search tree");
+                }
+                else
+                {
+                    PrintLine("5 - Perfectly balanced search tree");
+                }
+                PrintLine("6 - Сopy collection (demonstration)");
+                PrintLine("7 - Delete collection");
                 PrintLine("0 - Back");
             }
             // ...

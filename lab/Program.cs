@@ -101,7 +101,6 @@ namespace lab
             int max;
             bool isCreated1 = false;
             bool isCreated2 = false;
-            bool isSorted2 = false;
             do
             {
                 Output.Menu();
@@ -273,8 +272,8 @@ namespace lab
                     case 2:
                         do
                         {
-                            Output.DataMenu(2);
-                            menuNumber = Input.ReadSwitch(1, 7); // 1 - Form new collection, 2 - Print collection, 3 - Add collection element 4 - Сopy collection (demonstration) 5 delete
+                            Output.DataMenu(2, tree.IsSearchTree);
+                            menuNumber = Input.ReadSwitch(1, 8); // 1 - Form new collection, 2 - Print collection, 3 - Add collection element 4 - Сopy collection (demonstration) 5 delete
                             switch (menuNumber)
                             {
                                 case 1: // Form new collection
@@ -307,7 +306,6 @@ namespace lab
                                     PrintLine("Binary tree successfully created");
                                     Input.Cont();
                                     isCreated2 = true;
-                                    isSorted2 = false;
                                     break;
                                 case 2: // Print
                                     if (isCreated2)
@@ -320,14 +318,40 @@ namespace lab
                                     }
                                     Input.Cont();
                                     break;
-                                case 3: // min
+                                case 3: // Add
+                                    if (isCreated2)
+                                    {
+                                        Output.FillTypes(2);
+                                        fillType = Input.ReadSwitch(1, 2);
+                                        switch (fillType)
+                                        {
+                                            case 1: // Random
+                                                Input.RndNumbRange(out min, out max);
+                                                Console.Clear();
+                                                tree.AddValue(RandomVehicle(min, max));
+                                                break;
+                                            case 2: // Keyboard
+                                                tree.AddValue(KeyboardVehicle(0));
+                                                break;
+                                        }
+
+                                        Console.Clear();
+                                        PrintLine("Successfully added in Doubly linked list");
+                                    }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before adding");
+                                    }
+                                    Input.Cont();
+                                    break;
+                                case 4: // min
                                     if (isCreated2)
                                     {
                                         if (tree.Length != 0)
                                         {
                                             PrintLine("Minimum tree value: ");
 
-                                            Vehicle mn = tree.MinElement(isSorted2);
+                                            Vehicle mn = tree.MinElement();
                                             if (mn != null)
                                             {
                                                 mn.Show();
@@ -348,38 +372,109 @@ namespace lab
                                     }
                                     Input.Cont();
                                     break;
-                                case 4: // transform
+                                case 5: // transform
                                     if (isCreated2)
                                     {
                                         if (tree.Length != 0)
                                         {
-                                            tree.FormSearch();
-                                            isSorted2 = true;
-                                            PrintLine("Perfectly balanced search tree successfully created");
+                                            if (tree.IsSearchTree)
+                                            {
+                                                tree.FormNonSearch();
+                                                PrintLine("Perfectly balanced tree successfully created");
+                                            }
+                                            else
+                                            {
+                                                tree.FormSearch();
+                                                PrintLine("Perfectly balanced search tree successfully created");
+                                            }
                                         }
                                         else
                                         {
                                             PrintLine("Impossible to transform empty tree");
                                         }
-                                            
                                     }
                                     else
                                     {
                                         PrintLine("Necessary to form new collection before transforming");
                                     }
+                                    Input.Cont();
+                                    break;
+                                case 6: // Сopy collection (demonstration)
+                                    // Create original list
+                                    BinaryTree<IInit> testTree = new BinaryTree<IInit>();
+                                    PrintLine("Empty original tree:");
+                                    testTree.Show();
+                                    PrintLine();
 
+                                    BinaryTree<IInit> testTreeCopy = (BinaryTree<IInit>)testTree.Clone();
+                                    PrintLine("Empty copy tree:");
+                                    testTreeCopy.Show();
+                                    PrintLine();
+                                    break;
+                                    /*testTreeCopy.AddByNumber(1, RandomVehicle(3, 3));
+                                    PrintLine("Modified Empty copy:");
+                                    listEmptyCopy.Show();
+                                    PrintLine();
+
+                                    PrintLine("Empty original list:");
+                                    testList.Show();
+                                    PrintLine();
+                                    PrintLine();
+                                    PrintLine();
+
+                                    // Initialization
+                                    Human testHuman = new Human();
+                                    testHuman.RandomInit(100, 100);
+                                    Car TestCar = new Car();
+                                    TestCar.RandomInit(100, 100);
+
+                                    testList.AddByNumber(1, testHuman);
+                                    testList.AddByNumber(2, TestCar);
+
+                                    PrintLine("Original List"); // Print original hashtable
+                                    testList.Show();
+
+                                    DoublyLinkedList<IInit> shallowCopy = (DoublyLinkedList<IInit>)testList.ShallowCopy(); // Shallow copy
+                                    DoublyLinkedList<IInit> deepCopy = (DoublyLinkedList<IInit>)testList.Clone(); // Shallow copy
+
+                                    testHuman.RandomInit(1, 1);
+                                    TestCar.RandomInit(1, 1);
+
+                                    PrintLine("New original List:");
+                                    testList.Show();
+                                    PrintLine();
+
+                                    PrintLine("Shallow copy:");
+                                    shallowCopy.Show();
+                                    PrintLine();
+
+                                    shallowCopy.AddByNumber(3, RandomVehicle(3, 3));
+                                    PrintLine("Modified shallow copy:");
+                                    shallowCopy.Show();
+                                    PrintLine();
+
+                                    PrintLine("Deep copy:");
+                                    deepCopy.Show();
+                                    PrintLine();
+
+                                    deepCopy.AddByNumber(3, RandomVehicle(3, 3));
+                                    PrintLine("Modified deep copy:");
+                                    deepCopy.Show();
+                                    PrintLine();
+
+                                    PrintLine("New original List:");
+                                    testList.Show();
+                                    PrintLine();
                                     Input.Cont();
                                     break;
-                                case 5: // Сopy collection (demonstration)
                                     Input.Cont();
-                                    break;
-                                case 6: // delete
+                                    break;*/
+                                case 7: // delete
                                     if (isCreated2)
                                     {
                                         tree = new BinaryTree<Vehicle>();
                                         PrintLine("Binary tree successfully deleted");
                                         isCreated2 = false;
-                                        isSorted2 = false;
                                     }
                                     else
                                     {
@@ -388,7 +483,7 @@ namespace lab
                                     Input.Cont();
                                     break;
                             }
-                        } while (menuNumber != 7);
+                        } while (menuNumber != 8);
                         break;
                     case 3:
                         break;

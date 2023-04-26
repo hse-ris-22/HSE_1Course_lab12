@@ -13,10 +13,11 @@ namespace ClassLibraryHSE1course
 {
     public class BinaryTree<T>: ICloneable where T : ICloneable, IComparable
     {
-        static Random rnd = new Random();
+        static private Random rnd = new Random();
         private TreeNode<T>? root;
         public int Length { get; private set; }
         public int Height { get; private set; }
+        public bool IsSearchTree { get; private set; }
 
         public delegate T RandomT(int min, int max);
         public static RandomT? randomT;
@@ -28,6 +29,7 @@ namespace ClassLibraryHSE1course
             root = null;
             Length = 0;
             Height = 0;
+            IsSearchTree = false;
         }
 
         [ExcludeFromCodeCoverage]
@@ -36,6 +38,7 @@ namespace ClassLibraryHSE1course
         {
             Length = size;
             Height = (int)MathF.Ceiling(MathF.Log2(size + 1));
+            IsSearchTree = false;
             if (size == 0)
             {
                 root = null;
@@ -51,6 +54,7 @@ namespace ClassLibraryHSE1course
         {
             Length = size;
             Height = (int)MathF.Ceiling(MathF.Log2(size + 1));
+            IsSearchTree = false;
             if (size == 0)
             {
                 root = null;
@@ -72,9 +76,9 @@ namespace ClassLibraryHSE1course
             }
         }
 
-        public T MinElement(bool isSearchTree)
+        public T MinElement()
         {
-            if (isSearchTree)
+            if (IsSearchTree)
             {
                 TreeNode<T>? tempRoot;
                 if (root != null) tempRoot = root;
@@ -92,17 +96,66 @@ namespace ClassLibraryHSE1course
             
         }
 
-        public void FormSearch()
+        public void FormSearch(T val = default)
         {
             List<T> list = root.FormList();
+            if (!EqualityComparer<T>.Default.Equals(val, default))
+            {
+                list.Add(val);
+            }
             list.Sort();
             root.FormSearchTree(list);
             Height = (int)MathF.Ceiling(MathF.Log2(Length + 1));
+            IsSearchTree = true;
+        }
+
+        public void FormNonSearch(T val = default)
+        {
+            IsSearchTree = false;
+        }
+
+        public void AddValue(T val)
+        {
+            if (IsSearchTree)
+            {
+                this.FormSearch(val);
+            }
+            else
+            {
+                if (root == null) root = new TreeNode<T>(val);
+                else root.AddValue(val, Length);
+            }
+            Length += 1;
+            Height = (int)MathF.Ceiling(MathF.Log2(Length + 1));
+        }
+
+        public object ShallowCopy()
+        {
+            if (this == null)
+            {
+                return null;
+            }
+            BinaryTree<T> tree = new BinaryTree<T>();
+            tree.Height = this.Height;
+            tree.Length = this.Length;
+            tree.root = (TreeNode<T>)this.root.ShallowCopy();
+            tree.IsSearchTree = this.IsSearchTree;
+            return tree;
         }
 
         public object Clone()
         {
-            throw new NotImplementedException();
+            if (this == null)
+            {
+                return null;
+            }
+            BinaryTree<T> tree = new BinaryTree<T>();
+            tree.Height = this.Height;
+            tree.Length = this.Length;
+            tree.IsSearchTree = this.IsSearchTree;
+            if (this.root != null) tree.root = (TreeNode<T>)this.root.Clone();
+            else this.root = null;
+            return tree;
         }
     }
 }

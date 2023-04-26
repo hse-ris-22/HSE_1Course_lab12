@@ -95,5 +95,17 @@ namespace ClassLibraryHSE1course
         {
             return new Human(this.Weight, this.Height, (Car) this.PersonalCar.Clone());
         }
+
+        public int CompareTo(object? obj)
+        {
+            if (obj is double dbl) return (int)(this.Weight - dbl);
+            else if (obj is int ibl) return (int)(this.Weight - ibl);
+            else if (obj is Human human)
+            {
+                if (this.Weight != human.Weight) return (int)(this.Weight - human.Weight);
+                return (int)(this.Height - human.Height);
+            }
+            else throw new ArgumentException("Incorrect parameter value");
+        }
     }
 }

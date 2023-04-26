@@ -151,7 +151,7 @@ namespace ClassLibraryHSE1course
         public void FormSearchTree(List<T> list)
         {
             int len = list.Count;
-            if (len == 0) 
+            if (len == 0)
             {
                 Data = default;
                 Left = null;
@@ -159,17 +159,74 @@ namespace ClassLibraryHSE1course
             }
             Data = list[len/2];
             List<T> leftlist = list.GetRange(0, len/2);
-            List<T> rightlist = list.GetRange(len/2+1,(len-1)/2);
+            List<T> rightlist = list.GetRange(len/2+1, (len-1)/2);
             if (leftlist.Count == 0) Left = null;
-            else Left?.FormSearchTree(leftlist);
-
+            else
+            {
+                Left = new TreeNode<T>();
+                Left.FormSearchTree(leftlist);
+            }
             if (rightlist.Count == 0) Right = null;
-            else Right?.FormSearchTree(rightlist);
+            else
+            {
+                Right = new TreeNode<T>();
+                Right.FormSearchTree(rightlist);
+            }
+        }
+
+        public void AddValue(T val, int len)
+        {
+            if (len == 0)
+            {
+                Data = val;
+                Left = null;
+                Right = null;
+            }
+            else if (len == 1)
+            {
+                Left = new TreeNode<T>(val);
+            }
+            else if (len == 2)
+            {
+                Right = new TreeNode<T>(val);
+            }
+            else
+            {
+                int llen = len / 2;
+                int rlen = len - llen - 1;
+                if (llen <= rlen)
+                {
+                    Left.AddValue(val,llen);
+                }
+                else
+                {
+                    Right.AddValue(val, rlen);
+                }
+            }
+        }
+
+        public object ShallowCopy()
+        {
+            if (this == null)
+            {
+                return null;
+            }
+            TreeNode<T> treeClone = new TreeNode<T>(this.Data);
+            if (this.Left != null) treeClone.Left = (TreeNode<T>)this.Left.ShallowCopy();
+            if (this.Right != null) treeClone.Right = (TreeNode<T>)this.Right.ShallowCopy();
+            return treeClone;
         }
 
         public object Clone()
         {
-            return new TreeNode<T>((T)Data.Clone());
+            if (this == null)
+            {
+                return null;
+            }
+            TreeNode<T> treeClone = new TreeNode<T>((T)this.Data.Clone());
+            if (this.Left != null) treeClone.Left = (TreeNode<T>)this.Left.Clone();
+            if (this.Right != null) treeClone.Right = (TreeNode<T>)this.Right.Clone();
+            return treeClone;
         }
     }
 }
