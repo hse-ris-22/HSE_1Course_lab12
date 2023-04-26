@@ -402,22 +402,22 @@ namespace lab
                                 case 6: // Сopy collection (demonstration)
                                     // Create original list
                                     BinaryTree<IInit> testTree = new BinaryTree<IInit>();
-                                    PrintLine("Empty original tree:");
+                                    PrintLine("Empty original Tree:");
                                     testTree.Show();
                                     PrintLine();
 
                                     BinaryTree<IInit> testTreeCopy = (BinaryTree<IInit>)testTree.Clone();
-                                    PrintLine("Empty copy tree:");
+                                    PrintLine("Empty copy Tree:");
                                     testTreeCopy.Show();
                                     PrintLine();
-                                    break;
-                                    /*testTreeCopy.AddByNumber(1, RandomVehicle(3, 3));
+                                    
+                                    testTreeCopy.AddValue(RandomVehicle(3, 3));
                                     PrintLine("Modified Empty copy:");
-                                    listEmptyCopy.Show();
+                                    testTreeCopy.Show();
                                     PrintLine();
 
-                                    PrintLine("Empty original list:");
-                                    testList.Show();
+                                    PrintLine("Empty original Tree:");
+                                    testTree.Show();
                                     PrintLine();
                                     PrintLine();
                                     PrintLine();
@@ -428,27 +428,27 @@ namespace lab
                                     Car TestCar = new Car();
                                     TestCar.RandomInit(100, 100);
 
-                                    testList.AddByNumber(1, testHuman);
-                                    testList.AddByNumber(2, TestCar);
+                                    testTree.AddValue(testHuman);
+                                    testTree.AddValue(TestCar);
 
-                                    PrintLine("Original List"); // Print original hashtable
-                                    testList.Show();
+                                    PrintLine("Original Tree"); // Print original hashtable
+                                    testTree.Show();
 
-                                    DoublyLinkedList<IInit> shallowCopy = (DoublyLinkedList<IInit>)testList.ShallowCopy(); // Shallow copy
-                                    DoublyLinkedList<IInit> deepCopy = (DoublyLinkedList<IInit>)testList.Clone(); // Shallow copy
+                                    BinaryTree<IInit> shallowCopy = (BinaryTree<IInit>)testTree.ShallowCopy(); // Shallow copy
+                                    BinaryTree<IInit> deepCopy = (BinaryTree<IInit>)testTree.Clone(); // Shallow copy
 
                                     testHuman.RandomInit(1, 1);
                                     TestCar.RandomInit(1, 1);
 
-                                    PrintLine("New original List:");
-                                    testList.Show();
+                                    PrintLine("New original Tree:");
+                                    testTree.Show();
                                     PrintLine();
 
                                     PrintLine("Shallow copy:");
                                     shallowCopy.Show();
                                     PrintLine();
 
-                                    shallowCopy.AddByNumber(3, RandomVehicle(3, 3));
+                                    shallowCopy.AddValue(RandomVehicle(3, 3));
                                     PrintLine("Modified shallow copy:");
                                     shallowCopy.Show();
                                     PrintLine();
@@ -457,18 +457,16 @@ namespace lab
                                     deepCopy.Show();
                                     PrintLine();
 
-                                    deepCopy.AddByNumber(3, RandomVehicle(3, 3));
+                                    deepCopy.AddValue(RandomVehicle(3, 3));
                                     PrintLine("Modified deep copy:");
                                     deepCopy.Show();
                                     PrintLine();
 
-                                    PrintLine("New original List:");
-                                    testList.Show();
+                                    PrintLine("New original Tree:");
+                                    testTree.Show();
                                     PrintLine();
                                     Input.Cont();
                                     break;
-                                    Input.Cont();
-                                    break;*/
                                 case 7: // delete
                                     if (isCreated2)
                                     {

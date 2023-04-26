@@ -41,7 +41,7 @@ namespace ClassLibraryHSE1course
                 Output.Print(" ");
             }
             Output.PrintLine($"Weight = {Weight}, height = {Height}, Human perosnal car:");
-            PersonalCar.Show();
+            PersonalCar.Show(ln);
         }
         [ExcludeFromCodeCoverage]
         public void Init()

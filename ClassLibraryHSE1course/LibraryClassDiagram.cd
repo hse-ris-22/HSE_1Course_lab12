@@ -34,7 +34,7 @@
   <Class Name="ClassLibraryHSE1course.Human">
     <Position X="7.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABACAAAAAAAAAAAAAACAEAAAAAAQCADAAABA=</HashCode>
+      <HashCode>AAAAAAAABACAAAQAAAAAAAAAACAEAAAAAAQCADAAABA=</HashCode>
       <FileName>Human.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -48,9 +48,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="ClassLibraryHSE1course.IInit">
-    <Position X="7.75" Y="2" Width="1.5" />
+    <Position X="10" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAEAAAAAAACAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAACAAAQAAAAAAAAAAAAEAAAAAAACAAAAABA=</HashCode>
       <FileName>IInit.cs</FileName>
     </TypeIdentifier>
   </Interface>
