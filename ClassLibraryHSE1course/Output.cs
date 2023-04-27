@@ -52,7 +52,6 @@ namespace lab
             PrintLine("1 - Doubly linked list");
             PrintLine("2 - Binary Tree");
             PrintLine("3 - ...");
-            PrintLine("4 - ...");
             PrintLine("0 - Shut down");
         }
 

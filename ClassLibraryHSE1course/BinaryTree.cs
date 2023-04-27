@@ -13,7 +13,6 @@ namespace ClassLibraryHSE1course
 {
     public class BinaryTree<T>: ICloneable where T : ICloneable, IComparable
     {
-        static private Random rnd = new Random();
         private TreeNode<T>? root;
         public int Length { get; private set; }
         public int Height { get; private set; }
@@ -61,8 +60,19 @@ namespace ClassLibraryHSE1course
                 return;
             }
             // size > 1
-            root = new TreeNode<T>(size,min,max);
+            root = new TreeNode<T>(size, min, max);
         }
+
+        [ExcludeFromCodeCoverage]
+        public BinaryTree(BinaryTree<T> tree) // copy
+        {
+            BinaryTree<T> tr = (BinaryTree<T>)tree.Clone();
+            root = tr.root;
+            Length = tr.Length;
+            Height = tr.Height;
+            IsSearchTree = tr.IsSearchTree;
+        }
+
         [ExcludeFromCodeCoverage]
         public void Show()
         {

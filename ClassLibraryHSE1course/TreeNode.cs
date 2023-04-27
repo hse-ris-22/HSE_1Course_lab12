@@ -66,6 +66,12 @@ namespace ClassLibraryHSE1course
             if (rightSize == 0) Right = null;
             else Right = new TreeNode<T>(rightSize, min, max);
         }
+        public TreeNode(TreeNode<T> node)
+        {
+            Data = (T)node.Data.Clone();
+            Left = null;
+            Right = null;
+        }
 
         public override string ToString()
         {

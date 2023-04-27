@@ -21,6 +21,12 @@ namespace ClassLibraryHSE1course
             Next = null;
             Past = null;
         }
+        public DoublyLinkedNode(DoublyLinkedNode<T> node)
+        {
+            Data = (T)node.Data.Clone();
+            Next = null;
+            Past = null;
+        }
         public override string ToString()
         {
             return Data.ToString();

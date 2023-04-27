@@ -9,7 +9,6 @@ namespace ClassLibraryHSE1course
 {
     public class DoublyLinkedList<T>: ICloneable where T:ICloneable
     {
-        static Random rnd = new Random();
         private DoublyLinkedNode<T>? firstNode;
         private DoublyLinkedNode<T>? lastNode;
         public int Length { get; private set; }
@@ -99,7 +98,15 @@ namespace ClassLibraryHSE1course
             Length = size;
         }
 
-        [ExcludeFromCodeCoverage]
+        public DoublyLinkedList(DoublyLinkedList<T> list) // copy
+        {
+            DoublyLinkedList<T>  lt = (DoublyLinkedList<T>)list.Clone();
+            firstNode = lt.firstNode;
+            lastNode = lt.lastNode;
+            Length = lt.Length;
+        }
+
+            [ExcludeFromCodeCoverage]
         public void Show(bool isFromStart = true)
         {
             if (Length == 0)

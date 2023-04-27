@@ -104,7 +104,7 @@ namespace lab
             do
             {
                 Output.Menu();
-                collectionNumber = Input.ReadSwitch(1,5); // 1 - Doubly linked list
+                collectionNumber = Input.ReadSwitch(1,4); // 1 - Doubly linked list
                 switch (collectionNumber)
                 {
                     case 1:
@@ -492,7 +492,6 @@ namespace lab
                             switch (menuNumber)
                             {
                                 case 1: // Form new collection
-
                                     PrintLine("Hashtable successfully created");
                                     Input.Cont();
                                     break;
@@ -514,39 +513,8 @@ namespace lab
                             }
                         } while (menuNumber != 6);
                         break;
-                    case 4:
-                        break;
-                        do
-                        {
-                            Output.DataMenu(2);
-                            menuNumber = Input.ReadSwitch(1, 6);
-                            switch (menuNumber)
-                            {
-                                case 1: // Form new collection
-
-                                    PrintLine("Hashtable successfully created");
-                                    Input.Cont();
-                                    break;
-                                case 2: // Print
-
-                                    Input.Cont();
-                                    break;
-                                case 3: // Add element
-
-                                    Input.Cont();
-                                    break;
-                                case 4: // DСopy collection (demonstration)
-
-                                    Input.Cont();
-                                    break;
-                                case 5: // delete
-                                    Input.Cont();
-                                    break;
-                            }
-                        } while (menuNumber != 6);
-                        break;
                 }
-            } while (collectionNumber != 5);
+            } while (collectionNumber != 4);
         }
     }
 }
