@@ -106,7 +106,7 @@ namespace ClassLibraryHSE1course
             Length = lt.Length;
         }
 
-            [ExcludeFromCodeCoverage]
+        [ExcludeFromCodeCoverage]
         public void Show(bool isFromStart = true)
         {
             if (Length == 0)

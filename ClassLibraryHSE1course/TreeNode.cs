@@ -94,6 +94,34 @@ namespace ClassLibraryHSE1course
             if (Left != null) Left.Show(len+5);
         }
 
+        public void Show(int ind, int size, int len = 0)
+        {
+            if (Right != null) Right.Show(size/2+ind+1, size - size/2 - 1, len+5);
+            MethodInfo methodInfo = Data.GetType().GetMethod("Show");
+            if (methodInfo != null)
+            {
+                Output.Print($"{ind})");
+                methodInfo.Invoke(Data, new object[] { len });
+            }
+            else
+            {
+                throw new Exception("No showing method in data type");
+            }
+            Output.PrintLine("");
+            if (Left != null) Left.Show(ind + 1, size/2, len+5);
+
+            /*
+            Data = BinaryTree<T>.keyboardT.Invoke(ind);
+            int leftSize = size/2;
+            int rightSize = size - leftSize - 1;
+            if (leftSize == 0) Left = null;
+            else Left = new TreeNode<T>(leftSize, ind + 1);
+
+            if (rightSize == 0) Right = null;
+            else Right = new TreeNode<T>(rightSize, size/2+ind+1);
+            */
+        }
+
         public T MinElement()
         {
             if (this != null)

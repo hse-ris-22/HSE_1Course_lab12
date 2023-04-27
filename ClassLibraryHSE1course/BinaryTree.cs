@@ -86,6 +86,19 @@ namespace ClassLibraryHSE1course
             }
         }
 
+        [ExcludeFromCodeCoverage]
+        public void ShowWithIndex()
+        {
+            if (root == null)
+            {
+                Output.PrintLine("Empty Tree");
+            }
+            else
+            {
+                root.Show(1, Length, 0);
+            }
+        }
+
         public T MinElement()
         {
             if (IsSearchTree)
