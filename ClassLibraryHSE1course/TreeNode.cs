@@ -109,17 +109,6 @@ namespace ClassLibraryHSE1course
             }
             Output.PrintLine("");
             if (Left != null) Left.Show(ind + 1, size/2, len+5);
-
-            /*
-            Data = BinaryTree<T>.keyboardT.Invoke(ind);
-            int leftSize = size/2;
-            int rightSize = size - leftSize - 1;
-            if (leftSize == 0) Left = null;
-            else Left = new TreeNode<T>(leftSize, ind + 1);
-
-            if (rightSize == 0) Right = null;
-            else Right = new TreeNode<T>(rightSize, size/2+ind+1);
-            */
         }
 
         public T MinElement()

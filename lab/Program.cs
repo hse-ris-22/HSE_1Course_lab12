@@ -310,7 +310,7 @@ namespace lab
                                 case 2: // Print
                                     if (isCreated2)
                                     {
-                                        tree.Show();
+                                        tree.ShowWithIndex();
                                     }
                                     else
                                     {

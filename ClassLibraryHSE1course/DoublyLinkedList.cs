@@ -217,6 +217,62 @@ namespace ClassLibraryHSE1course
             Length += 1;
         }
 
+        public void delByNumber(int num)
+        {
+            if (Length == 0 || num > Length) // empty
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else if (Length == 1) // only one
+            {
+                firstNode = null;
+                lastNode = null;
+            }
+            else if (num == Length) // last
+            {
+                DoublyLinkedNode<T> preLastNode = lastNode.Past;
+                lastNode.Past.Next = null;
+                lastNode.Past = null;
+                lastNode = preLastNode;
+                
+            }
+            else if (num == 0) // first
+            {
+                DoublyLinkedNode<T> preFirstNode = firstNode.Next;
+                firstNode.Next.Past = null;
+                firstNode.Next = null;
+                firstNode = preFirstNode;
+            }
+            else
+            {
+                DoublyLinkedNode<T>? currentNode = firstNode;
+                for (int i = 1; i < Length; i++)
+                {
+
+                    if (i == num)
+                    {
+                        currentNode.Data = default;
+                        if (currentNode.Next != null)
+                        {
+                            currentNode.Next.Past = currentNode.Past;
+                            currentNode.Past.Next = currentNode.Next;
+                        }
+                        else
+                        {
+                            currentNode.Past.Next = null;
+                        }
+                        break;
+                    }
+
+                    if (currentNode.Next != null)
+                    {
+                        currentNode = currentNode.Next;
+                    }
+                }
+            }
+            
+        }
+
         public object ShallowCopy()
         {
             DoublyLinkedList<T> newList = new DoublyLinkedList<T>();
