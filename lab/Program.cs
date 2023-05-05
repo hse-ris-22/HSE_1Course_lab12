@@ -564,16 +564,47 @@ namespace lab
                                     Input.Cont();
                                     break;
                                 case 4: // Search by key
+                                    if (isCreated3)
+                                    {
+                                        int lkey = Input.ReadInt("Enter key");
+                                        Vehicle? founded = hashtable.FindByKey(lkey);
+                                        if (founded != null)
+                                        {
+                                            PrintLine("Value found by key:");
+                                            founded.Show();
+                                        }
+                                        else
+                                        {
+                                            PrintLine("Value not found");
+                                        }
 
+                                    }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before searching");
+                                    }
                                     Input.Cont();
                                     break;
                                 case 5: // Delete by key
-                                    List<Vehicle> lTest = new List<Vehicle>();
-                                    lTest.Add(new Train(1, 2, 3, 4, new int[4] { 1, 2, 3, 4 }));
-                                    if (lTest[0] is Train train)
+                                    if (isCreated3)
                                     {
-                                        PrintLine("");
+                                        int lkey = Input.ReadInt("Enter key");
+                                        bool isDeleted = hashtable.DeleteByKey(lkey);
+                                        if (isDeleted)
+                                        {
+                                            PrintLine("Value sucessfully deleted");
+                                        }
+                                        else
+                                        {
+                                            PrintLine("Value not found");
+                                        }
+
                                     }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before searching");
+                                    }
+                                    Input.Cont();
                                     break;
                                 case 6: // Delete hashtable
                                     if (isCreated3)
@@ -589,7 +620,7 @@ namespace lab
                                     Input.Cont();
                                     break;
                             }
-                        } while (menuNumber != 6);
+                        } while (menuNumber != 7);
                         break;
                 }
             } while (collectionNumber != 4);

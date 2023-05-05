@@ -99,8 +99,8 @@ namespace ClassLibraryHSE1course
         public void Add(V val)
         {
             Size += 1;
-            LoadFactor = Size / Capacity;
-            do //
+            LoadFactor = Size / (float)Capacity;
+            do
             {
                 List<V> tempList = new List<V>();
                 if (LoadFactor > maxLoadFactor)
@@ -113,10 +113,9 @@ namespace ClassLibraryHSE1course
                         }
                     }
                     list = new HashNode<V>[Capacity * 2];
-                    LoadFactor = Size / Capacity;
+                    LoadFactor = Size / (float)Capacity;
                 }
-                tempList.Add(val); //
-                Console.WriteLine(); 
+                tempList.Add(val);
                 // place 1/all value(s)
                 for (int j = 0; j < tempList.Count; j++)
                 {
@@ -145,6 +144,48 @@ namespace ClassLibraryHSE1course
                     }
                 }
             } while (LoadFactor > maxLoadFactor);
+        }
+
+        public V FindByKey(int k)
+        {
+            for (int i = Math.Abs(k % Capacity); i < Capacity; i++)
+            {
+                if (list[i] != null && k == list[i].key)
+                {
+                    return list[i].value;
+                }
+            }
+            //from start to hash
+            for (int i = 0; i < Math.Abs(k % Capacity); i++)
+            {
+                if (list[i] != null && k == list[i].key)
+                {
+                    return list[i].value;
+                }
+            }
+            return default(V);
+        }
+
+        public bool DeleteByKey(int k) // deleted - true, not found - false
+        {
+            for (int i = Math.Abs(k % Capacity); i < Capacity; i++)
+            {
+                if (list[i] != null && k == list[i].key)
+                {
+                    list[i] = null;
+                    return true;
+                }
+            }
+            //from start to hash
+            for (int i = 0; i < Math.Abs(k % Capacity); i++)
+            {
+                if (list[i] != null && k == list[i].key)
+                {
+                    list[i] = null;
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void Show()

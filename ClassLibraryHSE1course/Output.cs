@@ -130,8 +130,8 @@ namespace lab
                 PrintLine("1 - Form new collection");
                 PrintLine("2 - Print collection");
                 PrintLine("3 - Add collection element");
-                PrintLine("4 - Search by key");
-                PrintLine("5 - Delete by key");
+                PrintLine("4 - Search by key (first)");
+                PrintLine("5 - Delete by key (first)");
                 PrintLine("6 - Delete collection");
                 PrintLine("0 - Back");
             }
