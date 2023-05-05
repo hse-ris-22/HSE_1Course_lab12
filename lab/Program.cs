@@ -538,32 +538,7 @@ namespace lab
                                     Input.Cont();
                                     break;
                                 case 3: // Add element
-                                    /*
-                                    if (isCreated3)
-                                    {
-                                        Console.Clear();
-                                        Output.FillTypes(2);
-                                        fillType = Input.ReadSwitch(1, 2);
-                                        switch (fillType)
-                                        {
-                                            case 1: // Random
-                                                Input.RndNumbRange(out min, out max);
-                                                Console.Clear();
-                                                hashtable.Add(RandomVehicle(min, max));
-                                                break;
-                                            case 2: // Keyboard
-                                                hashtable.Add(KeyboardVehicle(0));
-                                                break;
-                                        }
-                                        Console.Clear();
-                                        PrintLine("Successfully added in Hashtable");
-                                    }
-                                    else
-                                    {
-                                        PrintLine("Necessary to form new collection before adding");
-                                    }
-                                    Input.Cont();*/
-                                    hashtable.AddTest(new Train(1, 2, 3, 4, new int[4] {1,2,3,4}));
+                                    hashtable.Add(new Train(1, 2, 3, 4, new int[4] {1,2,3,4}));
                                     break;
                                 case 4: // Search by key
 

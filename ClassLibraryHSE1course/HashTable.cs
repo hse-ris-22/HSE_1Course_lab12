@@ -100,7 +100,7 @@ namespace ClassLibraryHSE1course
         {
             Size += 1;
             LoadFactor = Size / Capacity;
-            do //
+            do 
             {
                 List<V> tempList = new List<V>();
                 if (LoadFactor > maxLoadFactor)
@@ -115,8 +115,7 @@ namespace ClassLibraryHSE1course
                     list = new HashNode<V>[Capacity * 2];
                     LoadFactor = Size / Capacity;
                 }
-                tempList.Add(val); //
-                Console.WriteLine(); 
+                tempList.Add(val);
                 // place 1/all value(s)
                 for (int j = 0; j < tempList.Count; j++)
                 {
@@ -164,9 +163,13 @@ namespace ClassLibraryHSE1course
                     }
                     else
                     {
-                        Output.PrintLine($"{i+1}) key = {list[i].key}: {list[i].value}");
+                        Output.Print($"{i+1}) key = {list[i].key}: ");
+                        MethodInfo methodInfo = list[i].value.GetType().GetMethod("Show");
+                        if (methodInfo != null)
+                        {
+                            methodInfo.Invoke(list[i].value, new object[] { 0 });
+                        }
                     }
-                    
                 }
             }
             
