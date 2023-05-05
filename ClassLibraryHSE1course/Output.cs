@@ -51,7 +51,7 @@ namespace lab
             PrintLine("Choose data type using arrows. Press enter to confirm your choice");
             PrintLine("1 - Doubly linked list");
             PrintLine("2 - Binary Tree");
-            PrintLine("3 - ...");
+            PrintLine("3 - Hashtable");
             PrintLine("0 - Shut down");
         }
 
@@ -124,7 +124,17 @@ namespace lab
                 PrintLine("7 - Delete collection");
                 PrintLine("0 - Back");
             }
-            // ...
+            else if (type == 3)
+            {
+                PrintLine("Choose command using arrows. Press enter to confirm your choice");
+                PrintLine("1 - Form new collection");
+                PrintLine("2 - Print collection");
+                PrintLine("3 - Add collection element");
+                PrintLine("4 - Search by key");
+                PrintLine("5 - Delete by key");
+                PrintLine("6 - Delete collection");
+                PrintLine("0 - Back");
+            }
         }
 
         public static void PrintClasses(int i)

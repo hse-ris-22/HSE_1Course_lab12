@@ -67,11 +67,40 @@ namespace ClassLibraryHSE1course
             }
         }
 
+        [ExcludeFromCodeCoverage]
+        public HashTable(int size, int min, int max) // random
+        {
+            if (size == 0)
+            {
+                list = new HashNode<V>[1];
+                Size = 0;
+                LoadFactor = 0;
+            }
+            else if (size == 1)
+            {
+                list = new HashNode<V>[2];
+                Size = 1;
+                LoadFactor = 0.5f;
+                V val = randomT.Invoke(min, max);
+                list[Math.Abs(val.GetHashCode() % Capacity)] = new HashNode<V>(val.GetHashCode(), val);
+            }
+            else
+            {
+                list = new HashNode<V>[size * 2];
+                Size = 0;
+                for (int i = 0; i < size; i++)
+                {
+                    V val = randomT.Invoke(min,max);
+                    Add(val);
+                }
+            }
+        }
+
         public void Add(V val)
         {
             Size += 1;
             LoadFactor = Size / Capacity;
-            do
+            do //
             {
                 List<V> tempList = new List<V>();
                 if (LoadFactor > maxLoadFactor)
@@ -86,8 +115,8 @@ namespace ClassLibraryHSE1course
                     list = new HashNode<V>[Capacity * 2];
                     LoadFactor = Size / Capacity;
                 }
-                tempList.Add(val);
-
+                tempList.Add(val); //
+                Console.WriteLine(); 
                 // place 1/all value(s)
                 for (int j = 0; j < tempList.Count; j++)
                 {
@@ -97,7 +126,7 @@ namespace ClassLibraryHSE1course
                     {
                         if (list[i] == null)
                         {
-                            list[i] = new HashNode<V>(val.GetHashCode(), val);
+                            list[i] = new HashNode<V>(tempList[j].GetHashCode(), tempList[j]);
                             isPlased = true;
                             break;
                         }
@@ -109,7 +138,7 @@ namespace ClassLibraryHSE1course
                         {
                             if (list[i] == null)
                             {
-                                list[i] = new HashNode<V>(val.GetHashCode(), val);
+                                list[i] = new HashNode<V>(tempList[j].GetHashCode(), tempList[j]);
                                 break;
                             }
                         }
