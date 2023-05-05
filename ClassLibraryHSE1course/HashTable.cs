@@ -164,7 +164,12 @@ namespace ClassLibraryHSE1course
                     }
                     else
                     {
-                        Output.PrintLine($"{i+1}) key = {list[i].key}: {list[i].value}");
+                        Output.Print($"{i+1}) key = {list[i].key}: ");
+                        MethodInfo methodInfo = list[i].value.GetType().GetMethod("Show");
+                        if (methodInfo != null)
+                        {
+                            methodInfo.Invoke(list[i].value, new object[] { 0 });
+                        }
                     }
                     
                 }

@@ -538,7 +538,6 @@ namespace lab
                                     Input.Cont();
                                     break;
                                 case 3: // Add element
-                                    /*
                                     if (isCreated3)
                                     {
                                         Console.Clear();
@@ -562,8 +561,7 @@ namespace lab
                                     {
                                         PrintLine("Necessary to form new collection before adding");
                                     }
-                                    Input.Cont();*/
-                                    hashtable.AddTest(new Train(1, 2, 3, 4, new int[4] {1,2,3,4}));
+                                    Input.Cont();
                                     break;
                                 case 4: // Search by key
 
