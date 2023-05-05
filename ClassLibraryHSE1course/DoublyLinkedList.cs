@@ -25,7 +25,6 @@ namespace ClassLibraryHSE1course
         }
 
         [ExcludeFromCodeCoverage]
-        // zero vehicles constructor
         public DoublyLinkedList(int size) // keyboard
         {
             if (size == 0)

@@ -93,6 +93,9 @@ namespace lab
             BinaryTree<Vehicle> tree = new BinaryTree<Vehicle>();
             BinaryTree<Vehicle>.randomT = RandomVehicle;
             BinaryTree<Vehicle>.keyboardT = KeyboardVehicle;
+            HashTable<Vehicle> hashtable = new HashTable<Vehicle>();
+            HashTable<Vehicle>.randomT = RandomVehicle;
+            HashTable<Vehicle>.keyboardT = KeyboardVehicle;
 
             int collectionNumber;
             int menuNumber;
@@ -484,7 +487,6 @@ namespace lab
                         } while (menuNumber != 8);
                         break;
                     case 3:
-                        break;
                         do
                         {
                             Output.DataMenu(2);
