@@ -8,10 +8,11 @@ using System.Reflection;
 using lab;
 using static lab.Output;
 using System.Drawing;
+using System.Collections;
 
 namespace ClassLibraryHSE1course
 {
-    public class BinaryTree<T>: ICloneable where T : ICloneable, IComparable
+    public class BinaryTree<T>: ICloneable, IEnumerable<T> where T : ICloneable, IComparable
     {
         private TreeNode<T>? root;
         public int Length { get; private set; }
@@ -179,6 +180,20 @@ namespace ClassLibraryHSE1course
             if (this.root != null) tree.root = (TreeNode<T>)this.root.Clone();
             else this.root = null;
             return tree;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            List<T> list = root.FormList();
+            foreach (T i in list)
+            {
+                yield return i;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

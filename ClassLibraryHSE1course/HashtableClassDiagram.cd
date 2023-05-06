@@ -1,30 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ClassLibraryHSE1course.DoublyLinkedNode&lt;T&gt;">
-    <Position X="4.25" Y="1" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AgAAAAAAIAAAAAAEAAAAAAAAAAAAABAAAAAAAAAAABA=</HashCode>
-      <FileName>DoublyLinkedNode.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ClassLibraryHSE1course.DoublyLinkedList&lt;T&gt;">
-    <Position X="6" Y="1" Width="1.5" />
+  <Class Name="ClassLibraryHSE1course.HashTable&lt;V&gt;">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
     <NestedTypes>
-      <Delegate Name="ClassLibraryHSE1course.DoublyLinkedList&lt;T&gt;.RandomT" Collapsed="true">
+      <Delegate Name="ClassLibraryHSE1course.HashTable&lt;V&gt;.RandomT" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>DoublyLinkedList.cs</NewMemberFileName>
+          <NewMemberFileName>HashTable.cs</NewMemberFileName>
         </TypeIdentifier>
       </Delegate>
-      <Delegate Name="ClassLibraryHSE1course.DoublyLinkedList&lt;T&gt;.KeyboardT" Collapsed="true">
+      <Delegate Name="ClassLibraryHSE1course.HashTable&lt;V&gt;.KeyboardT" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>DoublyLinkedList.cs</NewMemberFileName>
+          <NewMemberFileName>HashTable.cs</NewMemberFileName>
         </TypeIdentifier>
       </Delegate>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAACAAABAAAAAAABIAAAEAAAAAAAAABAAABA=</HashCode>
-      <FileName>DoublyLinkedList.cs</FileName>
+      <HashCode>ABIAAgAIACAAgABAgAAAAAACAAAEAAAAAAAAAABAABA=</HashCode>
+      <FileName>HashTable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ClassLibraryHSE1course.HashNode&lt;V&gt;">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAEAAAAAAAAAKAAAAAAAAAAABA=</HashCode>
+      <FileName>HashNode.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>

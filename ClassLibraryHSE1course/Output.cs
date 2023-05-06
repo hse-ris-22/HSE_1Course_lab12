@@ -121,7 +121,8 @@ namespace lab
                     PrintLine("5 - Perfectly balanced search tree");
                 }
                 PrintLine("6 - Сopy collection (demonstration)");
-                PrintLine("7 - Delete collection");
+                PrintLine("7 - IEnumerable (demonstration)");
+                PrintLine("8 - Delete collection");
                 PrintLine("0 - Back");
             }
             else if (type == 3)
@@ -130,8 +131,8 @@ namespace lab
                 PrintLine("1 - Form new collection");
                 PrintLine("2 - Print collection");
                 PrintLine("3 - Add collection element");
-                PrintLine("4 - Search by key (first)");
-                PrintLine("5 - Delete by key (first)");
+                PrintLine("4 - Search by key (closest to hashcode if several)");
+                PrintLine("5 - Delete by key (closest to hashcode if several)");
                 PrintLine("6 - Delete collection");
                 PrintLine("0 - Back");
             }
