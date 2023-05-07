@@ -334,15 +334,14 @@ namespace lab
                                             case 1: // Random
                                                 Input.RndNumbRange(out min, out max);
                                                 Console.Clear();
-                                                tree.AddValue(RandomVehicle(min, max));
+                                                Console.Clear();
+                                                tree.Add(RandomVehicle(min, max));
                                                 break;
                                             case 2: // Keyboard
-                                                tree.AddValue(KeyboardVehicle(0));
+                                                Console.Clear();
+                                                tree.Add(KeyboardVehicle(0));
                                                 break;
                                         }
-
-                                        Console.Clear();
-                                        PrintLine("Successfully added in Doubly linked list");
                                     }
                                     else
                                     {
@@ -392,6 +391,7 @@ namespace lab
                                             {
                                                 tree.FormSearch();
                                                 PrintLine("Perfectly balanced search tree successfully created");
+                                                PrintLine("All duplicate elements removed");
                                             }
                                         }
                                         else
@@ -417,7 +417,7 @@ namespace lab
                                     testTreeCopy.Show();
                                     PrintLine();
                                     
-                                    testTreeCopy.AddValue(RandomVehicle(3, 3));
+                                    testTreeCopy.Add(RandomVehicle(3, 3));
                                     PrintLine("Modified Empty copy:");
                                     testTreeCopy.Show();
                                     PrintLine();
@@ -434,8 +434,8 @@ namespace lab
                                     Car TestCar = new Car();
                                     TestCar.RandomInit(100, 100);
 
-                                    testTree.AddValue(testHuman);
-                                    testTree.AddValue(TestCar);
+                                    testTree.Add(testHuman);
+                                    testTree.Add(TestCar);
 
                                     PrintLine("Original Tree"); // Print original hashtable
                                     testTree.Show();
@@ -454,7 +454,7 @@ namespace lab
                                     shallowCopy.Show();
                                     PrintLine();
 
-                                    shallowCopy.AddValue(RandomVehicle(3, 3));
+                                    shallowCopy.Add(RandomVehicle(3, 3));
                                     PrintLine("Modified shallow copy:");
                                     shallowCopy.Show();
                                     PrintLine();
@@ -463,7 +463,7 @@ namespace lab
                                     deepCopy.Show();
                                     PrintLine();
 
-                                    deepCopy.AddValue(RandomVehicle(3, 3));
+                                    deepCopy.Add(RandomVehicle(3, 3));
                                     PrintLine("Modified deep copy:");
                                     deepCopy.Show();
                                     PrintLine();

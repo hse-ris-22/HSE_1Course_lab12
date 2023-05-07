@@ -12,12 +12,16 @@ using System.Collections;
 
 namespace ClassLibraryHSE1course
 {
-    public class BinaryTree<T>: ICloneable, IEnumerable<T> where T : ICloneable, IComparable
+    public class BinaryTree<T>: ICloneable, IEnumerable<T>, ICollection<T> where T : ICloneable, IComparable
     {
         private TreeNode<T>? root;
         public int Length { get; private set; }
         public int Height { get; private set; }
         public bool IsSearchTree { get; private set; }
+
+        public int Count => Length;
+
+        public bool IsReadOnly => false;
 
         public delegate T RandomT(int min, int max);
         public static RandomT? randomT;
@@ -128,6 +132,26 @@ namespace ClassLibraryHSE1course
                 list.Add(val);
             }
             list.Sort();
+
+            // Remove all duplicate elements 
+            T temp = list[0];
+            List<T> delList = new List<T>();
+            for (int i = 1; i < list.Count; i++)
+            {
+                if (EqualityComparer<T>.Default.Equals(temp, list[i]))
+                {
+                    delList.Add(temp);
+                }
+                else
+                {
+                    temp = list[i];
+                }
+            }
+            foreach (T del in delList)
+            {
+                list.Remove(del);
+            }
+
             root.FormSearchTree(list);
             Height = (int)MathF.Ceiling(MathF.Log2(Length + 1));
             IsSearchTree = true;
@@ -138,19 +162,30 @@ namespace ClassLibraryHSE1course
             IsSearchTree = false;
         }
 
-        public void AddValue(T val)
+        public void Add(T val)
         {
             if (IsSearchTree)
             {
-                this.FormSearch(val);
+                if (Contains(val))
+                {
+                    PrintLine("Unable to add duplicate element to search tree");
+                    return;
+                }
+                else
+                {
+                    FormSearch(val);
+
+                }
             }
             else
             {
                 if (root == null) root = new TreeNode<T>(val);
-                else root.AddValue(val, Length);
+                else root.Add(val, Length);
+
             }
             Length += 1;
             Height = (int)MathF.Ceiling(MathF.Log2(Length + 1));
+            PrintLine("Value successfully added in tree");
         }
 
         public object ShallowCopy()
@@ -192,6 +227,33 @@ namespace ClassLibraryHSE1course
         }
 
         IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Contains(T item)
+        {
+            if (root.Contains(item))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove(T item)
         {
             throw new NotImplementedException();
         }

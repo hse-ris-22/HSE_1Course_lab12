@@ -197,7 +197,7 @@ namespace ClassLibraryHSE1course
             }
         }
 
-        public void AddValue(T val, int len)
+        public void Add(T val, int len)
         {
             if (len == 0)
             {
@@ -219,11 +219,11 @@ namespace ClassLibraryHSE1course
                 int rlen = len - llen - 1;
                 if (llen <= rlen)
                 {
-                    Left.AddValue(val,llen);
+                    Left.Add(val,llen);
                 }
                 else
                 {
-                    Right.AddValue(val, rlen);
+                    Right.Add(val, rlen);
                 }
             }
         }
@@ -250,6 +250,20 @@ namespace ClassLibraryHSE1course
             if (this.Left != null) treeClone.Left = (TreeNode<T>)this.Left.Clone();
             if (this.Right != null) treeClone.Right = (TreeNode<T>)this.Right.Clone();
             return treeClone;
+        }
+
+        public bool Contains(T item)
+        {
+            if (this == null)
+            {
+                return false;
+            }
+            bool isLeftContains = false;
+            bool isRightContains = false;
+            if (Left != null) isLeftContains = Left.Contains(item);
+            if (Right != null) isRightContains = Right.Contains(item);
+            if (EqualityComparer<T>.Default.Equals(this.Data, item) || isLeftContains || isRightContains) return true;
+            else return false;
         }
     }
 }
