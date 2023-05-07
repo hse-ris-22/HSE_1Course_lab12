@@ -124,13 +124,27 @@ namespace ClassLibraryHSE1course
             
         }
 
-        public void FormSearch(T val = default)
+        public void FormSearch(int addType = 0,T val = default) // 0 - no adding, 1 - add, 2 - remove
         {
             List<T> list = root.FormList();
-            if (!EqualityComparer<T>.Default.Equals(val, default))
+            if (addType == 1)
             {
-                list.Add(val);
+                if (!EqualityComparer<T>.Default.Equals(val, default))
+                {
+                    list.Add(val);
+                }
             }
+            if (addType == 2)
+            {
+                if (!EqualityComparer<T>.Default.Equals(val, default))
+                {
+                    if (list.Contains(val))
+                    {
+                        list.Remove(val);
+                    }
+                }
+            }
+
             list.Sort();
 
             // Remove all duplicate elements 
@@ -152,7 +166,7 @@ namespace ClassLibraryHSE1course
                 list.Remove(del);
             }
 
-            root.FormSearchTree(list);
+            root.FormTree(list);
             Height = (int)MathF.Ceiling(MathF.Log2(Length + 1));
             IsSearchTree = true;
         }
@@ -173,7 +187,7 @@ namespace ClassLibraryHSE1course
                 }
                 else
                 {
-                    FormSearch(val);
+                    FormSearch(1, val);
 
                 }
             }
@@ -233,7 +247,7 @@ namespace ClassLibraryHSE1course
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            root = new TreeNode<T>();
         }
 
         public bool Contains(T item)
@@ -250,12 +264,64 @@ namespace ClassLibraryHSE1course
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            if (array == null)
+                throw new ArgumentNullException("The array cannot be null");
+            if (arrayIndex < 0)
+                throw new ArgumentOutOfRangeException("The starting array index cannot be negative");
+            if (Count > array.Length - arrayIndex)
+                throw new ArgumentException("The destination array has fewer elements than the collection");
+
+            List<T> list = root.FormList();
+            for (int i = 0; i < list.Count; i++)
+            {
+                array[i + arrayIndex] = list[i];
+            }
         }
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            if (IsSearchTree)
+            {
+                if (!Contains(item))
+                {
+                    return false;
+                }
+                else
+                {
+                    FormSearch(2, item);
+                }
+            }
+            else
+            {
+                if (root == null || !Contains(item)) return false;
+                else
+                {
+                    if (Length == 1 && EqualityComparer<T>.Default.Equals(root.Data, item))
+                    {
+                        root = new TreeNode<T>();
+                    }
+                    else
+                    {
+
+
+                        bool isDeleted = false;
+                        List<T> list = root.FormList();
+                        if (!EqualityComparer<T>.Default.Equals(item, default))
+                        {
+                            if (list.Contains(item))
+                            {
+                                isDeleted = list.Remove(item);
+                            }
+                        }
+                        root.FormTree(list);
+                        if (!isDeleted) return false;
+                    }
+                }
+
+            }
+            Length -= 1;
+            Height = (int)MathF.Ceiling(MathF.Log2(Length + 1));
+            return true;
         }
     }
 }

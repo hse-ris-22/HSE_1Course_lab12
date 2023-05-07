@@ -171,7 +171,7 @@ namespace ClassLibraryHSE1course
             return new List<T>();
         }
 
-        public void FormSearchTree(List<T> list)
+        public void FormTree(List<T> list)
         {
             int len = list.Count;
             if (len == 0)
@@ -187,13 +187,13 @@ namespace ClassLibraryHSE1course
             else
             {
                 Left = new TreeNode<T>();
-                Left.FormSearchTree(leftlist);
+                Left.FormTree(leftlist);
             }
             if (rightlist.Count == 0) Right = null;
             else
             {
                 Right = new TreeNode<T>();
-                Right.FormSearchTree(rightlist);
+                Right.FormTree(rightlist);
             }
         }
 
@@ -226,6 +226,15 @@ namespace ClassLibraryHSE1course
                     Right.Add(val, rlen);
                 }
             }
+        }
+
+        public bool Remove(T val, int len)
+        {
+            if (this != null)
+            {
+                return true;
+            }
+            return true;
         }
 
         public object ShallowCopy()

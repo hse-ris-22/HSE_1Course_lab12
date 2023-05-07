@@ -279,7 +279,7 @@ namespace lab
                         do
                         {
                             Output.DataMenu(2, tree.IsSearchTree);
-                            menuNumber = Input.ReadSwitch(1, 9); // 1 - Form new collection, 2 - Print collection, 3 - Add collection element 4 - Сopy collection (demonstration) 5 delete
+                            menuNumber = Input.ReadSwitch(1, 11); // 1 - Form new collection, 2 - Print collection, 3 - Add collection element 4 - Сopy collection (demonstration) 5 delete
                             switch (menuNumber)
                             {
                                 case 1: // Form new collection
@@ -316,7 +316,15 @@ namespace lab
                                 case 2: // Print
                                     if (isCreated2)
                                     {
-                                        tree.ShowWithIndex();
+                                        if (tree.Length != 0)
+                                        {
+                                            tree.ShowWithIndex();
+                                        }
+                                        else
+                                        {
+                                            PrintLine("Empty tree");
+                                        }
+                                        
                                     }
                                     else
                                     {
@@ -333,7 +341,6 @@ namespace lab
                                         {
                                             case 1: // Random
                                                 Input.RndNumbRange(out min, out max);
-                                                Console.Clear();
                                                 Console.Clear();
                                                 tree.Add(RandomVehicle(min, max));
                                                 break;
@@ -497,7 +504,30 @@ namespace lab
                                     }
                                     Input.Cont();
                                     break;
-                                case 8: // delete
+                                case 8: // Delete value
+                                    if (isCreated2)
+                                    {
+                                        if (tree.Length != 0)
+                                        {
+                                            bool isDeleted = tree.Remove(KeyboardVehicle(0));
+                                            if (isDeleted) PrintLine("Binary tree value successfully deleted");
+                                            else PrintLine("No such value in binary tree");
+                                        }
+                                        else
+                                        {
+                                            PrintLine("Impossible to delete elements from empty tree");
+                                        }
+                                        
+                                    }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before deleting elements");
+                                    }
+                                    Input.Cont();
+                                    break;
+                                case 9: // Search value
+                                    break;
+                                case 10: // delete
                                     if (isCreated2)
                                     {
                                         tree = new BinaryTree<Vehicle>();
@@ -511,7 +541,7 @@ namespace lab
                                     Input.Cont();
                                     break;
                             }
-                        } while (menuNumber != 8);
+                        } while (menuNumber != 11);
                         break;
                     case 3:
                         /*

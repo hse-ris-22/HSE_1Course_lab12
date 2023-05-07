@@ -122,7 +122,9 @@ namespace lab
                 }
                 PrintLine("6 - Сopy collection (demonstration)");
                 PrintLine("7 - IEnumerable (demonstration)");
-                PrintLine("8 - Delete collection");
+                PrintLine("8 - Delete value");
+                PrintLine("9 - Search value");
+                PrintLine("10 - Delete collection");
                 PrintLine("0 - Back");
             }
             else if (type == 3)
