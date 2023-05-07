@@ -526,6 +526,35 @@ namespace lab
                                     Input.Cont();
                                     break;
                                 case 9: // Search value
+                                    if (isCreated2)
+                                    {
+                                        if (tree.Length != 0)
+                                        {
+                                            Vehicle veh = new Vehicle();
+                                            PrintLine("Enter values by which the element will be found");
+                                            veh.Init();
+                                            Console.Clear();
+                                            Vehicle foundedVal = tree.Find(veh);
+                                            if (foundedVal == default(Vehicle))
+                                            {
+                                                PrintLine("No such value");
+                                            }
+                                            else
+                                            {
+                                                PrintLine("Founded value:");
+                                                foundedVal.Show();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            PrintLine("Impossible to search elements in empty tree");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        PrintLine("Necessary to form new collection before searching elements");
+                                    }
+                                    Input.Cont();
                                     break;
                                 case 10: // delete
                                     if (isCreated2)

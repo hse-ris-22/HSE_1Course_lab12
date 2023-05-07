@@ -228,6 +228,21 @@ namespace ClassLibraryHSE1course
             }
         }
 
+        public T Find(T val)
+        {
+            if (Data == null) return default;
+            T lv = default;
+            T rv = default;
+            if (val.CompareTo(Data) == 0) return Data;
+
+            if (Left != null) lv = Left.Find(val);
+            if (lv is not null && val.CompareTo(lv) == 0) return lv;
+
+            if (Right != null) rv = Right.Find(val);
+            if (rv is not null && val.CompareTo(rv) == 0) return rv;
+            return default;
+        }
+
         public bool Remove(T val, int len)
         {
             if (this != null)

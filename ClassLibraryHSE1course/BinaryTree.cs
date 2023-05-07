@@ -123,6 +123,58 @@ namespace ClassLibraryHSE1course
             }
             
         }
+        public T Find(T val)
+        {
+            if (IsSearchTree) // Search tree
+            {
+                TreeNode<T>? tempRoot;
+                if (root != null) 
+                {
+                    tempRoot = root;
+                    while (tempRoot.Left != null && tempRoot.Right != null)  //|| ((tempRoot.Left != null &&  tempRoot.Left.Data )))
+                    {
+                        if (EqualityComparer<T>.Default.Equals(root.Data, val)) return root.Data;
+                        else
+                        {
+                            if (val.CompareTo(tempRoot.Data) > 0)
+                            {
+                                if (tempRoot.Right != null)
+                                {
+                                    tempRoot = tempRoot.Right;
+                                }
+                                else
+                                {
+                                    return default;
+                                }
+                            }
+                            else if (val.CompareTo(tempRoot.Data) < 0)
+                            {
+                                if (tempRoot.Left != null)
+                                {
+                                    tempRoot = tempRoot.Left;
+                                }
+                                else
+                                {
+                                    return default;
+                                }
+                            }
+                            else
+                            {
+                                return tempRoot.Data;
+                            }
+                        }
+                    }
+                    if (val.CompareTo(tempRoot.Data) == 0) return tempRoot.Data;
+                    return default;
+                } 
+                else return default;
+            }
+            else // Non-search tree
+            {
+                return root.Find(val);
+            }
+
+        }
 
         public void FormSearch(int addType = 0,T val = default) // 0 - no adding, 1 - add, 2 - remove
         {
