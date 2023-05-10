@@ -112,7 +112,6 @@ namespace lab
                 switch (collectionNumber)
                 {
                     case 1:
-                        /*
                         do
                         {
                             Output.DataMenu(1);
@@ -273,13 +272,12 @@ namespace lab
                                     break;
                             }
                         } while (menuNumber != 6);
-                        */
                         break;
                     case 2:
                         do
                         {
                             Output.DataMenu(2, tree.IsSearchTree);
-                            menuNumber = Input.ReadSwitch(1, 11); // 1 - Form new collection, 2 - Print collection, 3 - Add collection element 4 - Сopy collection (demonstration) 5 delete
+                            menuNumber = Input.ReadSwitch(1, 12); // 1 - Form new collection, 2 - Print collection, 3 - Add collection element 4 - Сopy collection (demonstration) 5 delete
                             switch (menuNumber)
                             {
                                 case 1: // Form new collection
@@ -556,7 +554,33 @@ namespace lab
                                     }
                                     Input.Cont();
                                     break;
-                                case 10: // delete
+                                case 10: // indexer (Demonstration)
+                                    BinaryTree<IInit> indTree = new BinaryTree<IInit>();
+                                    for (int i = 1; i < 11; i++)
+                                    {
+                                        indTree.Add(RandomVehicle(i, i));
+                                    }
+                                    Console.Clear();
+                                    indTree.ShowWithIndex();
+
+                                    PrintLine();
+                                    PrintLine();
+                                    Print("First element = ");
+                                    ((Vehicle)indTree[0]).Show();
+                                    Print("Third element = ");
+                                    ((Vehicle)indTree[2]).Show();
+                                    Print("Last element = ");
+                                    ((Vehicle)indTree[9]).Show();
+
+                                    PrintLine();
+                                    PrintLine();
+                                    indTree[0] = RandomVehicle(0, 0);
+                                    indTree[2] = RandomVehicle(0, 0);
+                                    indTree[9] = RandomVehicle(0, 0);
+                                    indTree.ShowWithIndex();
+                                    Input.Cont();
+                                    break;
+                                case 11: // delete
                                     if (isCreated2)
                                     {
                                         tree = new BinaryTree<Vehicle>();
@@ -570,10 +594,9 @@ namespace lab
                                     Input.Cont();
                                     break;
                             }
-                        } while (menuNumber != 11);
+                        } while (menuNumber != 12);
                         break;
                     case 3:
-                        /*
                         do
                         {
                             Output.DataMenu(3);
@@ -707,7 +730,6 @@ namespace lab
                                     break;
                             }
                         } while (menuNumber != 7);
-                        */
                         break;
                 }
             } while (collectionNumber != 4);

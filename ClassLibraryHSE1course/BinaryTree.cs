@@ -12,7 +12,7 @@ using System.Collections;
 
 namespace ClassLibraryHSE1course
 {
-    public class BinaryTree<T>: ICloneable, IEnumerable<T>, ICollection<T> where T : ICloneable, IComparable
+    public class BinaryTree<T> : ICloneable, IEnumerable<T>, ICollection<T> where T : ICloneable, IComparable
     {
         private TreeNode<T>? root;
         public int Length { get; private set; }
@@ -121,14 +121,14 @@ namespace ClassLibraryHSE1course
             {
                 return root.MinElement();
             }
-            
+
         }
         public T Find(T val)
         {
             if (IsSearchTree) // Search tree
             {
                 TreeNode<T>? tempRoot;
-                if (root != null) 
+                if (root != null)
                 {
                     tempRoot = root;
                     while (tempRoot.Left != null && tempRoot.Right != null)  //|| ((tempRoot.Left != null &&  tempRoot.Left.Data )))
@@ -166,7 +166,7 @@ namespace ClassLibraryHSE1course
                     }
                     if (val.CompareTo(tempRoot.Data) == 0) return tempRoot.Data;
                     return default;
-                } 
+                }
                 else return default;
             }
             else // Non-search tree
@@ -176,7 +176,7 @@ namespace ClassLibraryHSE1course
 
         }
 
-        public void FormSearch(int addType = 0,T val = default) // 0 - no adding, 1 - add, 2 - remove
+        public void FormSearch(int addType = 0, T val = default) // 0 - no adding, 1 - add, 2 - remove
         {
             List<T> list = root.FormList();
             if (addType == 1)
@@ -374,6 +374,47 @@ namespace ClassLibraryHSE1course
             Length -= 1;
             Height = (int)MathF.Ceiling(MathF.Log2(Length + 1));
             return true;
+        }
+
+        public T this[int index]
+        {
+            get 
+            {
+                List<T> list = root.FormList();
+                return list[index];
+            }
+            set 
+            {
+                List<T> list = root.FormList();
+                list[index] = value;
+                if (IsSearchTree)
+                {
+                    list.Sort();
+
+                    // Remove all duplicate elements 
+                    T temp = list[0];
+                    List<T> delList = new List<T>();
+                    for (int i = 1; i < list.Count; i++)
+                    {
+                        if (EqualityComparer<T>.Default.Equals(temp, list[i]))
+                        {
+                            delList.Add(temp);
+                        }
+                        else
+                        {
+                            temp = list[i];
+                        }
+                    }
+                    foreach (T del in delList)
+                    {
+                        list.Remove(del);
+                    }
+                    Height = (int)MathF.Ceiling(MathF.Log2(Length + 1));
+                }
+                root.FormTree(list);
+                
+            }
+    
         }
     }
 }
