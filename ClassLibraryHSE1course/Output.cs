@@ -125,7 +125,9 @@ namespace lab
                 PrintLine("8 - Delete value");
                 PrintLine("9 - Search value");
                 PrintLine("10 - Indexer (demonstration)");
-                PrintLine("11 - Delete collection");
+                PrintLine("11 - CopyTo (demonstration)");
+                PrintLine("12 - Delete collection");
+                
                 PrintLine("0 - Back");
             }
             else if (type == 3)

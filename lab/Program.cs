@@ -277,7 +277,7 @@ namespace lab
                         do
                         {
                             Output.DataMenu(2, tree.IsSearchTree);
-                            menuNumber = Input.ReadSwitch(1, 12); // 1 - Form new collection, 2 - Print collection, 3 - Add collection element 4 - Сopy collection (demonstration) 5 delete
+                            menuNumber = Input.ReadSwitch(1, 13); // 1 - Form new collection, 2 - Print collection, 3 - Add collection element 4 - Сopy collection (demonstration) 5 delete
                             switch (menuNumber)
                             {
                                 case 1: // Form new collection
@@ -580,10 +580,34 @@ namespace lab
                                     indTree.ShowWithIndex();
                                     Input.Cont();
                                     break;
-                                case 11: // delete
+                                case 11: // CopyTo (demonstration)
+                                    BinaryTree<IInit> copyToTree = new BinaryTree<IInit>();
+                                    for (int i = 1; i < 11; i++)
+                                    {
+                                        copyToTree.Add(RandomVehicle(i, i));
+                                    }
+                                    Console.Clear();
+                                    copyToTree.ShowWithIndex();
+
+                                    PrintLine();
+                                    PrintLine();
+                                    PrintLine();
+                                    Vehicle[] arr = new Vehicle[10];
+                                    copyToTree.CopyTo(arr,0);
+                                    int j = 0;
+                                    foreach (Vehicle item in arr)
+                                    {
+                                        j++;
+                                        Print($"{j}) ");
+                                        item.Show();
+                                        PrintLine();
+                                    }
+                                    Input.Cont();
+                                    break;
+                                case 12: // delete
                                     if (isCreated2)
                                     {
-                                        tree = new BinaryTree<Vehicle>();
+                                        tree.Clear();
                                         PrintLine("Binary tree successfully deleted");
                                         isCreated2 = false;
                                     }
@@ -594,7 +618,7 @@ namespace lab
                                     Input.Cont();
                                     break;
                             }
-                        } while (menuNumber != 12);
+                        } while (menuNumber != 13);
                         break;
                     case 3:
                         do
@@ -604,7 +628,6 @@ namespace lab
                             switch (menuNumber)
                             {
                                 case 1: // Form new collection
-                                    
                                     int len;
                                     do
                                     {
