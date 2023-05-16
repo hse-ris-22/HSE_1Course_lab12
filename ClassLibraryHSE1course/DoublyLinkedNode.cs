@@ -3,24 +3,26 @@ using lab;
 
 namespace ClassLibraryHSE1course
 {
-    [ExcludeFromCodeCoverage]
     public class DoublyLinkedNode<T>: ICloneable where T:ICloneable
     {
         public T Data { get; set; }
         public DoublyLinkedNode<T> ?Next { get; set; }
         public DoublyLinkedNode<T> ?Past { get; set; }
+        [ExcludeFromCodeCoverage]
         public DoublyLinkedNode()
         {
             Data = default(T);
             Next = null;
             Past = null;
         }
+        [ExcludeFromCodeCoverage]
         public DoublyLinkedNode(T data)
         {
             Data = data;
             Next = null;
             Past = null;
         }
+        [ExcludeFromCodeCoverage]
         public DoublyLinkedNode(DoublyLinkedNode<T> node)
         {
             Data = (T)node.Data.Clone();

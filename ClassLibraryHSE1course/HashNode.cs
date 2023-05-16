@@ -11,7 +11,6 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace ClassLibraryHSE1course
 {
-    [ExcludeFromCodeCoverage]
     public class HashNode<V>: ICloneable where V : ICloneable
     {
         public int ?key;
@@ -21,13 +20,13 @@ namespace ClassLibraryHSE1course
             key = null;
             value = default(V);
         }
-
+        [ExcludeFromCodeCoverage]
         public HashNode(int ?key, V ?value)
         {
             this.key = key;
             this.value = value;
         }
-        
+        [ExcludeFromCodeCoverage]
         public HashNode(HashNode<V> node)
         {
             key = node.key;

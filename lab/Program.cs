@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Diagnostics.CodeAnalysis;
 using ClassLibraryHSE1course;
 
 namespace lab
 {
-    
+    [ExcludeFromCodeCoverage]
     internal class Program
     {
         [ExcludeFromCodeCoverage]
@@ -29,6 +26,7 @@ namespace lab
             //Console.ResetColor();
         }
 
+        [ExcludeFromCodeCoverage]
         private static Vehicle RandomVehicle(int min, int max)
         {
             Vehicle vehicle = new Vehicle();
@@ -55,6 +53,7 @@ namespace lab
             return vehicle;
         }
 
+        [ExcludeFromCodeCoverage]
         private static Vehicle KeyboardVehicle(int i)
         {
             Vehicle vehicle = new Vehicle();
@@ -695,15 +694,17 @@ namespace lab
                                     }
                                     Input.Cont();
                                     break;
-                                case 4: // Search by key
+                                case 4: // Search by value
                                     if (isCreated3)
                                     {
-                                        int lkey = Input.ReadInt("Enter key");
-                                        Vehicle? founded = hashtable.FindByKey(lkey);
+                                        //int key = Input.ReadInt("Enter key");
+                                        Vehicle veh = KeyboardVehicle(0);
+
+                                        Vehicle? founded = hashtable.FindByKey(veh.GetHashCode());
                                         if (founded != null)
                                         {
-                                            PrintLine("Value found by key:");
-                                            founded.Show();
+                                            PrintLine("Value founded by value:");
+                                            founded.Show(); 
                                         }
                                         else
                                         {

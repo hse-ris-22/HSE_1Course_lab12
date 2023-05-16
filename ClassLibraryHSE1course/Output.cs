@@ -136,7 +136,7 @@ namespace lab
                 PrintLine("1 - Form new collection");
                 PrintLine("2 - Print collection");
                 PrintLine("3 - Add collection element");
-                PrintLine("4 - Search by key (closest to hashcode if several)");
+                PrintLine("4 - Search by value (closest to hashcode if several)");
                 PrintLine("5 - Delete by key (closest to hashcode if several)");
                 PrintLine("6 - Delete collection");
                 PrintLine("0 - Back");

@@ -1,16 +1,9 @@
 ﻿using lab;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClassLibraryHSE1course
 {
-    [ExcludeFromCodeCoverage]
     public class HashTable<V> : ICloneable where V : ICloneable
     {
         private HashNode<V>[] list;
@@ -187,7 +180,7 @@ namespace ClassLibraryHSE1course
             }
             return false;
         }
-
+        [ExcludeFromCodeCoverage]
         public void Show()
         {
             if (list == null || Capacity == 0)

@@ -23,14 +23,14 @@ namespace ClassLibraryHSE1course
             Left = null;
             Right = null;
         }
-
+        [ExcludeFromCodeCoverage]
         public TreeNode(T data)
         {
             Data = data;
             Left = null;
             Right = null;
         }
-
+        [ExcludeFromCodeCoverage]
         public TreeNode(int size, int ind)
         {
             if (size == 0)
@@ -48,7 +48,7 @@ namespace ClassLibraryHSE1course
             if (rightSize == 0) Right = null;
             else Right = new TreeNode<T>(rightSize, size/2+ind+1);
         }
-
+        [ExcludeFromCodeCoverage]
         public TreeNode(int size, int min, int max)
         {
             if (size == 0)
@@ -66,6 +66,7 @@ namespace ClassLibraryHSE1course
             if (rightSize == 0) Right = null;
             else Right = new TreeNode<T>(rightSize, min, max);
         }
+        [ExcludeFromCodeCoverage]
         public TreeNode(TreeNode<T> node)
         {
             Data = (T)node.Data.Clone();
@@ -77,7 +78,7 @@ namespace ClassLibraryHSE1course
         {
             return Data.ToString();
         }
-
+        [ExcludeFromCodeCoverage]
         public void Show(int len=0)
         {
             if (Right != null) Right.Show(len+5);
@@ -93,7 +94,7 @@ namespace ClassLibraryHSE1course
             Output.PrintLine("");
             if (Left != null) Left.Show(len+5);
         }
-
+        [ExcludeFromCodeCoverage]
         public void Show(int ind, int size, int len = 0)
         {
             if (Right != null) Right.Show(size/2+ind+1, size - size/2 - 1, len+5);
